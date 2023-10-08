@@ -11,8 +11,9 @@ function App() {
       <div>
         <Header />
         <NavBar />
+        <Home />
         <Routes>
-          <Route path="/" exact component={Home} />
+          <Route path="/Home" exact component={Home} />
           <Route path="/categoria/:category" component={Category} />
         </Routes>
       </div>

@@ -18,9 +18,6 @@ function NavBar() {
         <div className="collapse navbar-collapse" id="navbarScroll">
         <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll">
             <li className="nav-item">
-              <Link className="nav-link" to="/">Home</Link>
-            </li>
-            <li className="nav-item">
               <Link className="nav-link" to="/category/sports">Sports</Link>
             </li>
             <li className="nav-item">
@@ -36,16 +33,16 @@ function NavBar() {
               <Link className="nav-link" to="/category/politics">Politics & Economy</Link>
             </li>
           </ul>
-          <div className="search-bar ml-auto">
+          <form className="d-flex" role="search">
             <input
-              type="text"
-              className="form-control"
+              type="search"
+              className="form-control me-2"
               placeholder="Search"
               value={searchValue}
               onChange={handleSearchChange}
             />
             <button className="btn btn-outline-primary">Search</button>
-          </div>
+          </form>
         </div>
       </div>
     </nav>
