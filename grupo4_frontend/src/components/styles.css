@@ -1,9 +1,9 @@
-.header-navbar {
+/*.header-navbar {
     position: relative;
-    z-index: 2; /* Establece un z-index superior para el encabezado */
+    z-index: 2; /* Establece un z-index superior para el encabezado *//*
   }
   
-  /* Establece un z-index inferior para la barra de navegación */
+  /* Establece un z-index inferior para la barra de navegación *//*
   .navbar {
     z-index: 1;
-  }
+  }*/

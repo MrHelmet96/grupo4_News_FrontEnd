@@ -5,7 +5,7 @@ import './styles.css';
 
 function Header() {
   return (
-    <header className="header-navbar navbar-expand-lg navbar-light bg-light">
+    <header className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container">
         <Link className="navbar-brand" to="/">Grupo 4 News</Link>
         <div className="header-buttons">
