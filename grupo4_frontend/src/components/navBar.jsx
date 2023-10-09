@@ -13,9 +13,9 @@ function NavBar() {
   };
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+    <nav className="navbar sticky-top navbar-expand-lg navbar-light bg-light">
       <div className="container-fluid">
-        <div className="collapse navbar-collapse" id="navbarScroll">
+        <div className="collapse navbar-collapse">
         <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll">
             <li className="nav-item">
               <Link className="nav-link" to="/category/sports">Sports</Link>
