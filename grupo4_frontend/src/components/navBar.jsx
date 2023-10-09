@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom'; // Importa Link para manejar las rutas
 import 'bootstrap/dist/css/bootstrap.css';
-import './styles.css';
 
 function NavBar() {
   // Estado para el valor de búsqueda
@@ -14,7 +13,7 @@ function NavBar() {
 
   return (
     <nav className="navbar sticky-top navbar-expand-lg navbar-light bg-light">
-      <div className="container-fluid">
+      <div className="container">
         <div className="collapse navbar-collapse">
         <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll">
             <li className="nav-item">
