@@ -4,6 +4,7 @@ import Header from '../src/components/header';
 import NavBar from '../src/components/navBar';
 import Home from '../src/components/home';
 import Category from '../src/components/category'; // Componente para mostrar noticias de una categoría específica
+// import Footer from '../src/components/footer';
 
 function App() {
   return (
@@ -21,4 +22,12 @@ function App() {
   );
 }
 
-export default App;
+/* const App = () => {
+  return (
+    <div className="App">
+      <Footer />
+    </div>
+  );
+}
+
+export default App; */
