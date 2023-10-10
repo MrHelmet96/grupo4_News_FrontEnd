@@ -21,7 +21,7 @@ function App() {
     </Router>
   );
 }
-
+export default App;
 /* const App = () => {
   return (
     <div className="App">
@@ -29,5 +29,4 @@ function App() {
     </div>
   );
 }
-
-export default App; */
+*/
