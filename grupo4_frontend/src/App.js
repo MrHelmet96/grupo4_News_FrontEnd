@@ -1,20 +1,22 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import Header from '../src/components/header/header';
 import NavBar from '../src/components/navBar/navBar';
 import Home from '../src/components/home';
 import Category from '../src/components/category'; // Componente para mostrar noticias de una categoría específica
+import TextEditor from './components/textEditor/TextEditor';
 // import Footer from '../src/components/footer';
 
 function App() {
   return (
     <Router>
-      <div>
+      <div className='container'>
         <Header />
         <NavBar />
-        <Home />
         <Routes>
-          <Route path="/Home" exact component={Home} />
+          <Route path="/" element={<Home />} />
+          <Route path="/crearArticulo" element={<TextEditor />} />
           <Route path="/categoria/:category" component={Category} />
         </Routes>
       </div>
@@ -22,11 +24,3 @@ function App() {
   );
 }
 export default App;
-/* const App = () => {
-  return (
-    <div className="App">
-      <Footer />
-    </div>
-  );
-}
-*/
