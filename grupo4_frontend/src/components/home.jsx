@@ -8,11 +8,11 @@ function Home() {
   return (
     <div className='container'>
       <h2>Lo que está pasando</h2>
-      <div className="row justify-content-center text-right">
+      <div className="row justify-content-center">
         <div className="col-lg-9">
           <img src={imagen1} className='img-thumbnail' alt="Imagen de la noticia" />
-          <h2>Título de la Noticia</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque molestie enim sed tincidunt ornare. Proin vehicula turpis a odio euismod, id venenatis augue molestie<a href="#"> ... Leer más</a></p>
+          <h2>Ya vuelve la esperanza</h2>
+          <p></p>
         </div>
       </div>
       <div className="row justify-content-around news_container">
