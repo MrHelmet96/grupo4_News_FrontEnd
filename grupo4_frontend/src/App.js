@@ -1,14 +1,13 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+//import ReactDOM from 'react-dom';//
 import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import Header from '../src/components/header/header';
-import Footer from '../src/components/footer/footer';
 import NavBar from '../src/components/navBar/navBar';
 import Home from '../src/components/home';
 import Category from '../src/components/category'; // Componente para mostrar noticias de una categoría específica
 import TextEditor from './components/textEditor/TextEditor';
 import Article from './components/article';
-// import Footer from '../src/components/footer';
+import Footer from '../src/components/footer/footer';
 
 function App() {
   return (
@@ -22,6 +21,7 @@ function App() {
           <Route path="/crearArticulo" element={<TextEditor />} />
           <Route path="/categoria/:category" component={Category} />
         </Routes>
+        <Footer/>
       </div>
     </Router>
   );
