@@ -1,5 +1,6 @@
 import React from 'react';
 import imagen1 from './images/imagen_noticia1.jpg'
+import Article from './article';
 import 'bootstrap/dist/css/bootstrap.css';
 
 function Home() {
@@ -8,13 +9,7 @@ function Home() {
   return (
     <div className='container'>
       <h2>Lo que está pasando</h2>
-      <div className="row justify-content-center">
-        <div className="col-lg-9">
-          <img src={imagen1} className='img-thumbnail' alt="Imagen de la noticia" />
-          <h2>Ya vuelve la esperanza</h2>
-          <p></p>
-        </div>
-      </div>
+      <Article/>
       <div className="row justify-content-around news_container">
         <div className='col-lg-3'>
           <img src={imagen1} className='img-thumbnail' alt="Imagen de la noticia" />
