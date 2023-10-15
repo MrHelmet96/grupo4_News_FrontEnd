@@ -46,10 +46,11 @@ function BlogEntryForm() {
         <div>
           <label>Categoría:</label>
           <select value={category} onChange={handleCategoryChange}>
-            <option value="categoria1">Categoría 1</option>
-            <option value="categoria2">Categoría 2</option>
-            <option value="categoria3">Categoría 3</option>
-            {/* Agrega más opciones de categoría según sea necesario */}
+            <option value="sports">Sports</option>
+            <option value="health">Health</option>
+            <option value="entertainment">Entertainment</option>
+            <option value="gastronomy">Gastronomy</option>
+            <option value="economy & politics">Economía & Política</option>
           </select>
         </div>
         <div>
