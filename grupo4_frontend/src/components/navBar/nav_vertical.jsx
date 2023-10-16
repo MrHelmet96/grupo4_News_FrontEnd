@@ -4,18 +4,17 @@ import { Link } from "react-router-dom"
 function NavVertical() {
     return (
         <nav className="navbar nav col-2 bg-dark text-white">
-            <div className="logo text-center mt-4"><h1>Grupo 4 Blog</h1></div>
+            <div className="logo text-center mt-4"><Link className="nav-link" to="/"><h1>Grupo 4 Blog</h1></Link></div>
             <div className="categorias mt-4 mb-4">
-                <a aria-current="page"><Link className="nav-link" to="/"></Link>Home</a>
-                <a ><Link className="nav-link" to=""></Link>Sports</a>
-                <a ><Link className="nav-link" to=""></Link>Health</a>
-                <a ><Link className="nav-link" to=""></Link>Gastronomy</a>
-                <a ><Link className="nav-link" to=""></Link>Enterteinment</a>
-                <a ><Link className="nav-link" to=""></Link>Economy & Politics</a>
-                <a><Link className="nav-link" to=""></Link>Others</a>
+            <Link className=" border-top border-bottom border-1 border-light m-1 nav-link" to="/category/sports">Sports</Link>
+            <Link className=" border-top border-bottom border-1 border-light m-1 nav-link" to="/category/health">Health</Link>
+                <Link className=" border-top border-bottom border-1 border-light m-1 nav-link" to="/category/gastronomy">Gastronomy</Link>
+                <Link className=" border-top border-bottom border-1 border-light m-1 nav-link" to="/category/">Enterteinment</Link>
+                <Link className=" border-top border-bottom border-1 border-light m-1 nav-link" to="">Economy & Politics</Link>
+                <Link className=" border-top border-bottom border-1 border-light m-1 nav-link" to="">Others</Link>
             </div>
-            <div className="header-buttons text-center">
-                <Link className="btn btn-outline-primary" to="/login">Iniciar Sesión</Link>
+            <div className="text-center">
+                <Link className="btn btn-outline-primary mb-2" to="/login">Iniciar Sesión</Link>
                 <Link className="btn btn-primary" to="/register">Registrarse</Link>
             </div>
 

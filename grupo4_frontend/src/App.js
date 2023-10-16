@@ -1,8 +1,6 @@
 import React from 'react';
 //import ReactDOM from 'react-dom';//
 import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
-import Header from '../src/components/header/header';
-import NavBar from '../src/components/navBar/navBar';
 import NavVertical from './components/navBar/nav_vertical';
 import Home from '../src/components/home';
 import Category from '../src/components/category'; // Componente para mostrar noticias de una categoría específica
@@ -16,8 +14,6 @@ function App() {
       <div className="container-fluid" style={{ width: '70vw', height: '100vh' }}>
         <div className='row h-100'>
         <NavVertical/>
-        {/* <Header /> */}
-        {/* <NavBar /> */}
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/articulo/:id" element={<Article />} />

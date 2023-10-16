@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 export class ArticleGrid extends Component {
   constructor(props) {
@@ -30,14 +31,14 @@ export class ArticleGrid extends Component {
   render() {
     const mostrarPreview = this.state.articles.map((article, index) => {
       return (
-        <div className="d-flex justify-content-between mt-3 mb-3" key={index}>
+        <div className="d-flex justify-content-between mt-3 mb-3 border-bottom border-dark border-2" key={index}>
           <div className="d-flex flex-column">
             <h3 className=''>{article.title}</h3>
             <p className=''>{article.subtitle}</p>
           </div>
           <div>
             <Link to={`/articulo/${article.article_id}`}>
-              <a className="btn btn-primary align-self-center"><i className='bi bi-arrow-right'></i></a>
+              <a className=" align-self-center"><i class="fa-solid fa-angles-right"></i></a>
             </Link>
           </div>
 

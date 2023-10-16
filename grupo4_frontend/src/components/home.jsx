@@ -11,16 +11,16 @@ function Home() {
     <div className='col-10'>
       <div className='container'>
         <div className='row'>
-          <div className='col-12'>
+          <div className='col-12 border-bottom border-dark border-2'>
             <div className="d-flex justify-content-evenly mt-5">
               
-                <p>Texto del primer párrafo.</p>
-                <p>Texto del segundo párrafo.</p>
+                <p className='col-4'>This is a space for developing ideas that pique my interest. My intention is to build a practice of writing, share what I'm learning in the hopes that it will benefit others and my future self.</p>
+                <p className='col-4'>If you'd like to discuss any of these notes with me or if you're generous enough to correct my thinking, please reach out on Twitter or send me an email.</p>
             </div>
           </div>
           <div className="col-12">
             <div className="mt-4 mb-4">
-              <div className='d-flex justify-content-between'>
+              <div className='d-flex justify-content-between border-bottom border-dark border-2'>
               <h2>Lo que está pasando</h2>
               <Link to="/crearArticulo">Crear entrada nueva</Link>
               </div>

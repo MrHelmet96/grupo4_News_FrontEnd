@@ -27,11 +27,13 @@ function Article() {
   ));
 
   return (
-    <div className="container">
-      <div className="row justify-content-center mb-5">
-        <div className="col-lg-9">
-          <h2 className='mt-5'>{article.title}</h2>
-          <div dangerouslySetInnerHTML={{__html: article.content}} className='mt-5'></div>
+    <div className="col-10">
+      <div className="row justify-content-center">
+        <div></div>
+        <div className="col-10">
+          <h1 className='mt-5 pb-2 border-bottom border-dark border-2'>{article.title}</h1>
+          <h6 className='mt-3 pb-2 border-bottom border-dark border-2'>{article.subtitle}</h6>
+          <div dangerouslySetInnerHTML={{__html: article.content}} className='pt-3'></div>
           {/* <div className='m-5'>{paragraphs}</div> */}
         </div>
       </div>
