@@ -1,12 +1,10 @@
 import React from 'react';
-//import ReactDOM from 'react-dom';//
 import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import NavVertical from './components/navBar/nav_vertical';
 import Home from '../src/components/home';
-import Category from '../src/components/category'; // Componente para mostrar noticias de una categoría específica
+// import Category from '../src/components/category'; // Componente para mostrar noticias de una categoría específica
 import BlogEntryForm from './components/blogentryform/blogentryform';
 import Article from './components/article';
-import Footer from '../src/components/footer/footer';
 
 function App() {
   return (
@@ -18,7 +16,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/articulo/:id" element={<Article />} />
           <Route path="/crearArticulo" element={<BlogEntryForm />} />
-          <Route path="/categoria/:category" component={Category} />
+          {/* <Route path="/categoria/:category" component={Category} /> */}
         </Routes>
         </div>        
       </div>
