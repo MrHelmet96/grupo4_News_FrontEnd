@@ -1,61 +1,53 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 
 function BlogEntryForm() {
   const [title, setTitle] = useState('');
   const [subtitle, setSubtitle] = useState('');
-  const [category, setCategory] = useState(''); // Opciones del menú dropdown
+  const [category, setCategory] = useState('');
   const [content, setContent] = useState('');
-
-  const handleTitleChange = (event) => {
-    setTitle(event.target.value);
-  };
-
-  const handleSubtitleChange = (event) => {
-    setSubtitle(event.target.value);
-  };
-
-  const handleCategoryChange = (event) => {
-    setCategory(event.target.value);
-  };
-
-  const handleContentChange = (event) => {
-    setContent(event.target.value);
-  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // Aquí puedes enviar los datos del formulario al servidor o realizar otras acciones necesarias
-    console.log('Título:', title);
-    console.log('Subtítulo:', subtitle);
-    console.log('Categoría:', category);
-    console.log('Contenido:', content);
+
+    const newEntry = {
+      title,
+      subtitle,
+      category,
+      content,
+    };
+
+    // Realizar una solicitud POST al backend para crear una nueva entrada
+    axios.post('/api/entries', newEntry)
+      .then((response) => {
+        console.log('Entrada creada:', response.data);
+        // Realizar cualquier redireccionamiento o actualización de la UI necesarios
+      })
+      .catch((error) => {
+        console.error('Error al crear la entrada:', error);
+        // Manejar errores
+      });
   };
 
   return (
     <div>
-      <h2>Crear Nueva Entrada de Blog</h2>
+      <h1>Crear Nueva Entrada de Blog</h1>
       <form onSubmit={handleSubmit}>
         <div>
           <label>Título:</label>
-          <input type="text" value={title} onChange={handleTitleChange} />
+          <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
         </div>
         <div>
           <label>Subtítulo o Descripción:</label>
-          <input type="text" value={subtitle} onChange={handleSubtitleChange} />
+          <input type="text" value={subtitle} onChange={(e) => setSubtitle(e.target.value)} />
         </div>
         <div>
           <label>Categoría:</label>
-          <select value={category} onChange={handleCategoryChange}>
-            <option value="sports">Sports</option>
-            <option value="health">Health</option>
-            <option value="entertainment">Entertainment</option>
-            <option value="gastronomy">Gastronomy</option>
-            <option value="economy & politics">Economía & Política</option>
-          </select>
+          <input type="text" value={category} onChange={(e) => setCategory(e.target.value)} />
         </div>
         <div>
           <label>Contenido:</label>
-          <textarea value={content} onChange={handleContentChange} />
+          <textarea value={content} onChange={(e) => setContent(e.target.value)} />
         </div>
         <button type="submit">Publicar Entrada</button>
       </form>

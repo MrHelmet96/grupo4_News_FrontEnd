@@ -6,7 +6,7 @@ import NavBar from '../src/components/navBar/navBar';
 import NavVertical from './components/navBar/nav_vertical';
 import Home from '../src/components/home';
 import Category from '../src/components/category'; // Componente para mostrar noticias de una categoría específica
-import TextEditor from './components/textEditor/TextEditor';
+import BlogEntryForm from './components/blogentryform/blogentryform';
 import Article from './components/article';
 import Footer from '../src/components/footer/footer';
 
@@ -21,7 +21,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/articulo/:id" element={<Article />} />
-          <Route path="/crearArticulo" element={<TextEditor />} />
+          <Route path="/crearArticulo" element={<BlogEntryForm />} />
           <Route path="/categoria/:category" component={Category} />
         </Routes>
         </div>        

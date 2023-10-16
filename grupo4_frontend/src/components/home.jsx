@@ -2,6 +2,7 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import ArticleGrid from './article_grid';
 import Footer from './footer/footer';
+import { Link } from 'react-router-dom';
 
 function Home() {
   // Lógica para cargar y mostrar noticias principales
@@ -12,6 +13,7 @@ function Home() {
         <div className='row'>
           <div className='col-6'>
             <div className="mb-4">
+              <Link to="/crearArticulo">Crear entrada nueva</Link>
                 <p>Texto del primer párrafo.</p>
                 <p>Texto del segundo párrafo.</p>
             </div>
