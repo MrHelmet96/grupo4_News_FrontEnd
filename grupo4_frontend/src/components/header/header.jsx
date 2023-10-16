@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 
 function Header() {
   return (
-    <header className="navbar navbar-expand-lg navbar-light bg-light">
+    <header className="navbar navbar-dark bg-dark col-md-10 col-lg-10">
       <div className="container">
         <Link className="navbar-brand" to="/">Grupo 4 News</Link>
         <div className="header-buttons">

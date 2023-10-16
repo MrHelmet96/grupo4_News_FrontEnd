@@ -30,14 +30,19 @@ export class ArticleGrid extends Component {
   render() {
     const mostrarPreview = this.state.articles.map((article, index) => {
       return (
-        <div className="row justify-content-center" key={index}>
-          <div className="col-lg-9">
-            <h2>{article.title}</h2>
+        <div className="" key={index}>
+          <div className="d-flex flex-column">
+            <h3 className='p-2'>{article.title}</h3>
+            <p className='p-2'>{article.subtitle}</p>
+          </div>
+          <div>
             <Link to={`/articulo/${article.article_id}`}>
-              <button className="btn btn-primary">Ir a noticia</button>
+              <a className="btn btn-primary"><i className='bi bi-arrow-right'></i></a>
             </Link>
           </div>
+
         </div>
+
       )
     });
 

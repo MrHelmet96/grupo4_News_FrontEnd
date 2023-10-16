@@ -1,18 +1,18 @@
 import React from 'react';
-import facebook from '../images/fcb.png'
-import instagram from '../images/inst.png'
-import twitter from '../images/twtt.png'
-import address from '../images/house.png'
-import phone from '../images/phone.png'
-import email from '../images/email.png'
+// import facebook from '../images/fcb.png'
+// import instagram from '../images/inst.png'
+// import twitter from '../images/twtt.png'
+// import address from '../images/house.png'
+// import phone from '../images/phone.png'
+// import email from '../images/email.png'
 
 
 import "./footer.css"
 
 function Footer() {
     return (
-        <footer className='bg-light text-center text-lg-start'>
-            <div class="container-all">
+        <footer className='col bg-light text-center text-lg-start col-md-10 col-lg-10'>
+            {/* <div class="container-all">
 
                 <div class="container-body">
 
@@ -62,15 +62,15 @@ function Footer() {
 
                 </div>
 
-            </div>
+            </div> */}
 
-            <div class="container-footer">
-                <div class="footer">
-                    <div class="copyright">
-                        Todos los derechos reservados All rights reserved
+            <div className="container-footer">
+                <div className="footer">
+                    <div className="copyright">
+                    © 2023 Grupo 4 Blog All rights reserved
                     </div>
 
-                    <div class="Términos y Condiciones">
+                    <div className="Términos y Condiciones">
                         <a href="C:\TP_Final\FrontEnd\Plantilla\Condiciones\Inf_Comp.html">Informacion Compañia</a> | <a href="C:\TP_Final\FrontEnd\Plantilla\Condiciones\Pol_Prv.html">Privacion y Politicas</a> | <a href="C:\TP_Final\FrontEnd\Plantilla\Condiciones\Term_Cond.html">Terminos y Condiciones</a>
                     </div>
                 </div>
