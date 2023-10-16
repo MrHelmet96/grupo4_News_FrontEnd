@@ -11,7 +11,7 @@ import "./footer.css"
 
 function Footer() {
     return (
-        <footer className='col bg-light text-center text-lg-start col-md-10 col-lg-10'>
+        <footer className='col bg-light text-center text-lg-start col-12'>
             {/* <div class="container-all">
 
                 <div class="container-body">

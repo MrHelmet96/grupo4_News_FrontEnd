@@ -13,7 +13,7 @@ import Footer from '../src/components/footer/footer';
 function App() {
   return (
     <Router>
-      <div className="container-fluid" style={{ width: '80vw', height: '100vh' }}>
+      <div className="container-fluid" style={{ width: '70vw', height: '100vh' }}>
         <div className='row h-100'>
         <NavVertical/>
         {/* <Header /> */}
