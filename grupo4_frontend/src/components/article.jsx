@@ -38,8 +38,11 @@ function Article() {
             </Link>
             </div>
           </div>
-        <div className="col-10 p-4">
-          <h1 className='mt-5 pb-2 border-bottom border-dark border-2'>{article.title}</h1>
+        <div className="col-10 p-4 ">
+          <div className='d-flex justify-content-between mt-5 pb-2 border-bottom border-dark border-2'>
+          <h1 className=''>{article.title}</h1>
+          <Link><a></a><i class="bi bi-pencil-square"></i></Link>
+          </div>
           <h6 className='mt-3 pb-2 border-bottom border-dark border-2'>{article.subtitle}</h6>
           <div dangerouslySetInnerHTML={{__html: article.content}} className='col-9 pt-3'></div>
           {/* <div className='m-5'>{paragraphs}</div> */}
