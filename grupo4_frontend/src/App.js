@@ -5,6 +5,7 @@ import Home from '../src/components/home';
 // import Category from '../src/components/category'; // Componente para mostrar noticias de una categoría específica
 import BlogEntryForm from './components/blogentryform/blogentryform';
 import Article from './components/article';
+import EditArticle from './components/article_edit/article_edit';
 
 function App() {
   return (
@@ -16,7 +17,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/articulo/:id" element={<Article />} />
           <Route path="/crearArticulo" element={<BlogEntryForm />} />
-          {/* <Route path="/categoria/:category" component={Category} /> */}
+          <Route path="/editarArticulo" element={<EditArticle />} />
         </Routes>
         </div>        
       </div>
