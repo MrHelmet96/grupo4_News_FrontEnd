@@ -7,6 +7,7 @@ import BlogEntryForm from './components/blogentryform/blogentryform';
 import Article from './components/article';
 import EditArticle from './components/article_edit/article_edit';
 
+
 function App() {
   return (
     <Router>
@@ -14,7 +15,9 @@ function App() {
         <div className='row h-100'>
         <NavVertical/>
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Home />} />          
+                   
+                  
           <Route path="/articulo/:id" element={<Article />} />
           <Route path="/crearArticulo" element={<BlogEntryForm />} />
           <Route path="/editarArticulo" element={<EditArticle />} />
