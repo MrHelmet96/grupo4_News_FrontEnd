@@ -36,8 +36,8 @@ export class ArticleGrid extends Component {
             <p className='text-muted'>{article.subtitle}</p>
           </div>
           <div>
-            <Link to={`/articulo/${article.article_id}`}>
-              <a className=" align-self-center"><i class="fa-solid fa-angles-right"></i></a>
+            <Link to={`/articulo/${article.article_id}`} className=" align-self-center">
+              <i class="fa-solid fa-angles-right"></i>
             </Link>
           </div>
 

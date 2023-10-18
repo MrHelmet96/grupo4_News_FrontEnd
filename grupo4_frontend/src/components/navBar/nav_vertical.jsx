@@ -38,7 +38,7 @@ function NavVertical() {
   };
 
   return (
-    <nav className="navbar nav col-lg-2 col-md-2 bg-dark text-white">
+    <nav className="navbar nav col-lg-2 col-md-2 bg-dark text-white sticky-top" style={{height: '100vh'}}>
       <div className="logo text-center mt-4">
         <Link className="nav-link" to="/">
           <h1>Grupo 4 Blog</h1>
