@@ -4,7 +4,6 @@ import axios from 'axios';
 function BlogEntryForm() {
   const [title, setTitle] = useState('');
   const [subtitle, setSubtitle] = useState('');
-  const [category, setCategory] = useState('');
   const [content, setContent] = useState('');
 
   const handleSubmit = (event) => {
@@ -13,7 +12,6 @@ function BlogEntryForm() {
     const newEntry = {
       title,
       subtitle,
-      category,
       content,
     };
 
@@ -40,10 +38,6 @@ function BlogEntryForm() {
         <div>
           <label>Subtítulo o Descripción:</label>
           <input type="text" value={subtitle} onChange={(e) => setSubtitle(e.target.value)} />
-        </div>
-        <div>
-          <label>Categoría:</label>
-          <input type="text" value={category} onChange={(e) => setCategory(e.target.value)} />
         </div>
         <div>
           <label>Contenido:</label>
