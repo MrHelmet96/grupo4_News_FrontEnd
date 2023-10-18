@@ -1,68 +1,236 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import React, { Component } from 'react'
+import { Link, useNavigate, useParams } from 'react-router-dom'
+import { ToastContainer, toast } from 'react-toastify';
+ import 'react-toastify/dist/ReactToastify.css';
 
-const URI = 'http://localhost:8080/article/'
 
-const EditArticle = () => {
-  const [title, setTitle] = useState('')
-  const [subtitle, setSubtitle] = useState('')
-  const [content, setContent] = useState('')
-  const id = useParams()
 
-  //procedimiento para actualizar
-  const update = async (e) => {
-    e.preventDefault()
-    await axios.put(URI + id, {
-      title: title,
-      subtitle: subtitle,
-      content: content
-    });
-  }
-  useEffect(() => {
-    getBlogById()
-  }, [])
+export class EditArticle extends Component {
 
-  const getBlogById = async () => {
-    const res = await axios.get(URI + id)
-    setTitle(res.data.title)
-    setSubtitle(res.data.subtitle)
-    setContent(res.data.content)
-  }
+    constructor(props) {
+        super(props)
 
-  return (
-    <div className="col-10">
-      <h3>Edit Post</h3>
-      <form onSubmit={update}>
-        <div className="mb-3">
-          <label htmlFor="" className="form-label">Title</label>
-          <input
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            type="text"
-            className="form-control" />
-        </div>
-        <div className="mb-3">
-          <label htmlFor="" className="form-label">Subtitle</label>
-          <input
-            value={subtitle}
-            onChange={(e) => setSubtitle(e.target.value)}
-            type="text"
-            className="form-control" />
-        </div>
-        <div className="mb-3">
-          <label htmlFor="" className="form-label">Contenido</label>
-          <input
-            value={content}
-            onChange={(e) => setContent(e.target.value)}
-            type="text"
-            className="form-control" />
-        </div>
-        <button type="submit" className="btn btn-primary">Update</button>
-      </form>
-    </div>
-  )
+        this.state = {
+            article_id: null,
+            title: '',
+            subtitle: '',
+            content: ''
+        }
+    }
 
+    componentDidMount() { 
+
+        if (this.props.params.article_id) {
+            let parametros = {
+                method: 'GET',
+
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                }
+            }
+
+            fetch("http://localhost:8080/articles/:"+ this.props.params.article_id , parametros)
+                .then(res => {
+
+                    res.json().then(
+                            body => (
+                                {
+                                    status: res.status,
+                                    ok: res.ok,
+                                    headers: res.headers,
+                                    body: body
+                                }
+                            )
+                        ).then(
+                            result => {
+                                if (result.ok) {
+
+                                    console.log(result)
+                                    // this.setState({
+                                    //     article_id: result.bodythis.state.article_id,
+                                    //     title: this.state.title,
+                                    //     subtitle: this.state.subtitle,
+                                    //     content: this.state.content,
+                                    // })
+                                } else {
+                                    toast.error(result.body.message, {
+                                        position: "bottom-center",
+                                        autoClose: 5000,
+                                        hideProgressBar: false,
+                                        closeOnClick: true,
+                                        pauseOnHover: true,
+                                        draggable: true,
+                                        progress: undefined,
+                                        theme: "light",
+                                        });
+                                }
+                            });
+                       })
+                .catch((error) => {
+                    console.log(error)
+                });
+        }
+
+
+                    //    this.props.navigate("/")
+
+     }
+
+    handleSubmit = (event) => {
+        event.preventDefault()
+        //alert('enviando datos al backend del artículo: ' + this.state.titulo + this.state.subtitulo);
+
+        let article = {
+            article_id: this.state.article_id,
+            title: this.state.title,
+            subtitle: this.state.subtitle,
+            content: this.state.content,
+        }
+
+        let parametros = {
+            method: 'POST',
+            body: JSON.stringify(article),
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        }
+
+        fetch("http://localhost:8080/articles/", parametros)
+            .then(res => {
+
+                res.json().then(
+                        body => (
+                            {
+                                status: res.status,
+                                ok: res.ok,
+                                headers: res.headers,
+                                body: body
+                            }
+                        )
+                    ).then(
+                        result => {
+                            if (result.ok) {
+                                toast.success(result.body.message, {
+                                    position: "bottom-center",
+                                    autoClose: 5000,
+                                    hideProgressBar: false,
+                                    closeOnClick: true,
+                                    pauseOnHover: true,
+                                    draggable: true,
+                                    progress: undefined,
+                                    theme: "light",
+                                    });
+                            } else {
+                                toast.error(result.body.message, {
+                                    position: "bottom-center",
+                                    autoClose: 5000,
+                                    hideProgressBar: false,
+                                    closeOnClick: true,
+                                    pauseOnHover: true,
+                                    draggable: true,
+                                    progress: undefined,
+                                    theme: "light",
+                                    });
+                            }
+                        });
+                   })
+            .catch((error) => {
+                console.log(error)
+            });
+                       this.props.navigate("/")
+    }
+
+
+    handleChange = (event) => {
+        this.setState({ [event.target.name]: event.target.value });
+    }
+
+    render() {
+        // const navigate = useNavigate();
+        return (
+
+            <div className='col-10'>
+                <div className='row'>
+                    <div className='col'>
+                        <h1>{this.props.params.article_id ? `Edición del Artículo ${this.props.params.article_id}` : "Editando Articulo"}</h1>
+                    </div>
+                </div>
+
+
+                <div className='row'>
+                    <div className='col'>
+
+{/* <h1>{this.props.params.vehiculo_id}</h1> */}
+
+                        <form onSubmit={this.handleSubmit}>
+                            <br />
+                            <div className="form-floating">
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    id="floatingTitle"
+                                    placeholder="title"
+                                    onChange={this.handleChange}
+                                    value={this.state.title}
+                                    name='title'
+                                />
+                                <label htmlFor="floatingTitle">Título</label>
+                            </div>
+                            <br />
+                            <div className="form-floating">
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    id="floatingSubtitle"
+                                    placeholder="Subtitle"
+                                    onChange={this.handleChange}
+                                    value={this.state.subtitle}
+                                    name='subtitle'
+                                />
+                                <label htmlFor="floatingModelo">Subtítulo</label>
+                            </div>
+                            <br />
+
+                            <div className="form-floating">
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    id="floatingContent"
+                                    placeholder="Content"
+                                    onChange={this.handleChange}
+                                    value={this.state.content}
+                                    name='content'
+                                />
+
+                                <label htmlFor="floatingMatricula">Escriba su entrada</label>
+                            </div>
+                            <br />
+                            <input className='btn btn-primary'
+                                type="submit"
+                                value="Finalizar"
+                            />
+                        </form>
+                    </div>
+                </div>
+            </div>
+        )
+    }
 }
 
-export default EditArticle;
+export default Vehiculos_Edit
+
+
+
+
+export function Vehiculos_Edit() {
+    const p = useParams();
+
+    const navigate = useNavigate();
+
+    return (
+        <>
+            <EditArticle navigate={navigate} params={p}/>
+        </>
+    );
+}

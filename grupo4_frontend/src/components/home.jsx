@@ -25,7 +25,7 @@ function Home() {
               <Link to="/crearArticulo">Crear entrada nueva</Link>
               </div>
               <div className='row'>
-              <ArticleGrid />
+                <ArticleGrid />              
               </div>
             </div>
           </div>

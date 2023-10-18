@@ -47,7 +47,7 @@ export class ArticleGrid extends Component {
     });
 
     return (
-      <div className='container'>
+      <div className='container d-flex flex-column-reverse'>
         {mostrarPreview}
       </div>
     )
