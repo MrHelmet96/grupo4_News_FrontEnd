@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.css';
 
+
 export class ArticleGrid extends Component {
   constructor(props) {
     super(props)
@@ -51,19 +52,19 @@ export class ArticleGrid extends Component {
   render() {
     const mostrarPreview = this.state.articles.map((article, index) => {
       return (
-        <div className="d-flex justify-content-between mt-5 mb-5 border-bottom border-dark border-2" key={index}>
+        <div className="d-flex justify-content-between mt-3 mb-3 border-bottom border-dark border-2" key={index}>
           <div className="d-flex flex-column">
             <h3 className='fs-1'>{article.title}</h3>
             <p className='text-muted'>{article.subtitle}</p>
           </div>
-          <div>
-            <Link to={`/articulo/${article.article_id}`} className=" align-self-center">
+          <div className='d-flex flex-column justify-content-evenly'>
+            <button onClick={() => this.handleDelete(article.article_id)} className="btn btn-danger"><i class="bi bi-trash3"></i></button>
+            <Link to={`/articulo/${article.article_id}`} className="align-self-center">
               <i class="fa-solid fa-angles-right"></i>
             </Link>
-            <button onClick={() => this.handleDelete(article.article_id)} className="btn btn-danger">Eliminar</button>
           </div>
         </div>
-
+        
       )
     });
 

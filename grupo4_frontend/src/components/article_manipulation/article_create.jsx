@@ -46,18 +46,20 @@ export class InternalCreateArticle extends Component {
                     ).then(
                         result => {
                             if (result.ok) {
-
-                                console.log(result)
-                                // this.setState({
-                                //     article_id: result.bodythis.state.article_id,
-                                //     title: this.state.title,
-                                //     subtitle: this.state.subtitle,
-                                //     content: this.state.content,
-                                // })
+                                toast.success(result.body.message, {
+                                    position: "bottom-center",
+                                    autoClose: 2500,
+                                    hideProgressBar: false,
+                                    closeOnClick: true,
+                                    pauseOnHover: true,
+                                    draggable: true,
+                                    progress: undefined,
+                                    theme: "light",
+                                });
                             } else {
                                 toast.error(result.body.message, {
                                     position: "bottom-center",
-                                    autoClose: 5000,
+                                    autoClose: 2500,
                                     hideProgressBar: false,
                                     closeOnClick: true,
                                     pauseOnHover: true,
@@ -114,7 +116,7 @@ export class InternalCreateArticle extends Component {
                         if (result.ok) {
                             toast.success(result.body.message, {
                                 position: "bottom-center",
-                                autoClose: 5000,
+                                autoClose: 2500,
                                 hideProgressBar: false,
                                 closeOnClick: true,
                                 pauseOnHover: true,
@@ -125,7 +127,7 @@ export class InternalCreateArticle extends Component {
                         } else {
                             toast.error(result.body.message, {
                                 position: "bottom-center",
-                                autoClose: 5000,
+                                autoClose: 2500,
                                 hideProgressBar: false,
                                 closeOnClick: true,
                                 pauseOnHover: true,
@@ -148,7 +150,6 @@ export class InternalCreateArticle extends Component {
     }
 
     render() {
-        // const navigate = useNavigate();
         return (
 
             <div className='col-10'>

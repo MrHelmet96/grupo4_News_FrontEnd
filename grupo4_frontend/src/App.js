@@ -5,6 +5,7 @@ import Home from '../src/components/home';
 // import Category from '../src/components/category'; // Componente para mostrar noticias de una categoría específica
 import Article from './components/article';
 import CreateArticle from './components/article_manipulation/article_create';
+import { ToastContainer } from 'react-toastify';
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
         </Routes>
         </div>        
       </div>
+      <ToastContainer/>
     </Router>
   );
 }
