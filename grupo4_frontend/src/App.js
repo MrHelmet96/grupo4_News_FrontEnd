@@ -3,25 +3,26 @@ import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import NavVertical from './components/navBar/nav_vertical';
 import Home from '../src/components/home';
 // import Category from '../src/components/category'; // Componente para mostrar noticias de una categoría específica
-import BlogEntryForm from './components/blogentryform/blogentryform';
 import Article from './components/article';
-import EditArticle from './components/article_edit/article_edit';
+import CreateArticle from './components/article_manipulation/article_create';
+import { ToastContainer } from 'react-toastify';
 
 
 function App() {
   return (
     <Router>
-      <div className="container-fluid" style={{ width: '70vw', height: '100vh' }}>
-        <div className='row h-100'>
+      <div className="container" style={{ width: '80vw'}}>
+        <div className='row'>
         <NavVertical/>
         <Routes>
           <Route path="/" element={<Home />} />            
           <Route path="/articulo/:id" element={<Article />} />
-          <Route path="/crearArticulo" element={<BlogEntryForm />} />
-          <Route path="/editarArticulo" element={<EditArticle />} />
+          {/* <Route path="/crearArticulo" element={<BlogEntryForm />} /> */}
+          <Route path="/crearArticulo" element={<CreateArticle />} />
         </Routes>
         </div>        
       </div>
+      <ToastContainer/>
     </Router>
   );
 }
