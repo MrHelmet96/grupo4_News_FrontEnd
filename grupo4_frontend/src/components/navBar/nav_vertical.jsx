@@ -2,13 +2,66 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 function NavVertical() {
+  //hooks de login
   const [showLoginModal, setShowLoginModal] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem('isLoggedIn') === 'true');
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loginError, setLoginError] = useState(false);
+  //
 
+  //hooks de register
+  const [modal, setModal] = useState(false);
+  // const [showRegistroModal, setShowRegistroModal] = useState(false);
+  const [name, setName] = useState("");
+  const [surname, setSurname] = useState("");
+  const [address, setAddress] = useState("");
+  const [phone_number, setPhone] = useState("");
+  const [mail, setMail] = useState("");
+  const [clave, setClave] = useState("");
+  const [registrationError, setRegistrationError] = useState(false);
+  
+
+
+  //
+  const toggle = () => setModal(!modal);
   const toggleLoginModal = () => setShowLoginModal(!showLoginModal);
+  // const toggleRegistroModal = () => setShowRegistroModal(!showRegistroModal);
+ 
+  // logica de register 
+
+  const handleRegistro = async () => {
+    try {
+      const response = await fetch("http://localhost:8080/persons", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name,
+          surname,
+          address,
+          phone_number,
+          mail,
+          clave,
+        }),
+      });
+
+      if (response.ok) {
+        // Registro exitoso
+        //toggleRegistroModal()
+        toggle()
+        
+      } else {
+        setRegistrationError(true);
+      }
+    } catch (error) {
+      console.error(error);
+      setRegistrationError(true);
+    }
+  };
+
+  // logica login & logout
 
   const handleLogin = async () => {
     try {
@@ -24,17 +77,23 @@ function NavVertical() {
         setIsLoggedIn(true);
         setLoginError(false);
         toggleLoginModal();
+        console.log(response.data)
+        sessionStorage.setItem("token", true)
+        // sessionStorage.setItem('token', response.body.token)
       } else {
         setLoginError(true);
+       
       }
     } catch (error) {
       console.error(error);
       setLoginError(true);
+      sessionStorage.setItem("token", false)
     }
   };
 
   const handleLogout = () => {
     setIsLoggedIn(false);
+    sessionStorage.setItem("token", false)
   };
 
   return (
@@ -51,9 +110,9 @@ function NavVertical() {
         <button className="btn btn-outline-primary mb-2" onClick={toggleLoginModal}>
           {isLoggedIn ? "Cerrar Sesión" : "Iniciar Sesión"}
         </button>
-        <Link className="btn btn-primary mb-2" to="/register">
+        <button className="btn btn-primary mb-2" onClick={toggle}>
           Registrarse
-        </Link>
+          </button>
       </div>
 
       {/* Modal de Inicio de Sesión */}
@@ -71,7 +130,7 @@ function NavVertical() {
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
-            <div className="modal-body">
+            <div className="modal-body" style={{color:'black'}}>
               {isLoggedIn ? (
                 <p>¡Bienvenido!</p>
               ) : (
@@ -114,11 +173,161 @@ function NavVertical() {
         </div>
       </div>
       {/* Fin del Modal de Inicio de Sesión */}
+
+      {/* modal de register */}
+      <div
+        className="modal"
+        tabIndex="-1"
+        role="dialog"
+        style={{ display: modal ? "block" : "none" }}
+      >
+        <div className="modal-dialog" role="document">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h5 className="modal-title" style={{color:'black'}}>Registro de Usuarios</h5>
+              <button type="button" className="close" onClick={toggle}>
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div className="modal-body">
+              <form>                
+                <div className="modal-body">
+                  <form>
+                    <div className="form-group">
+                      <label htmlFor="name" style={{color:'black'}}>Nombre</label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="name"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                      />
+                    </div>
+                    <div className="form-group">
+                      <label htmlFor="surname" style={{color:'black'}}>Apellido</label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="surname"
+                        value={surname}
+                        onChange={(e) => setSurname(e.target.value)}
+                      />
+                    </div>
+                    <div className="form-group">
+                      <label htmlFor="address" style={{color:'black'}}>Dirección</label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="address"
+                        value={address}
+                        onChange={(e) => setAddress(e.target.value)}
+                      />
+                    </div>
+                    <div className="form-group">
+                      <label htmlFor="phone" style={{color:'black'}}>Número de teléfono</label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="phone"
+                        value={phone_number}
+                        onChange={(e) => setPhone(e.target.value)}
+                      />
+                    </div>
+                    {/* <div className="form-group">
+                      <label htmlFor="email" style={{color:'black'}}>Correo electrónico</label>
+                      <input
+                        type="email"
+                        className="form-control"
+                        id="email"
+                        value={mail}
+                        onChange={(e) => setMail(e.target.value)}
+                      />
+                    </div>
+                    <div className="form-group">
+                      <label htmlFor="password" style={{color:'black'}}>Contraseña</label>
+                      <input
+                        type="password"
+                        className="form-control"
+                        id="password"
+                        value={clave}
+                        onChange={(e) => setClave(e.target.value)}
+                      />
+                    </div> */}
+                  </form>
+                  {registrationError && (
+                    <div className="alert alert-danger">
+                      Error en el registro, intente nuevamente
+                    </div>
+                  )}
+                </div>
+              </form>
+              {registrationError && (
+                <div className="alert alert-danger">
+                  Error en el registro, intente nuevamente
+                </div>
+              )}
+            </div>
+            <div className="modal-footer">
+              <button
+                type="button"
+                className="btn btn-secondary"
+                onClick={toggle}
+              >
+                Cancelar
+              </button>
+              <button
+                type="button"
+                className="btn btn-primary"
+                onClick={handleRegistro}
+              >
+                Registrarse
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      {/* Fin del Modal register */}      
     </nav>
+    
   );
+
+
+
 }
 
 export default NavVertical;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 // import React from "react"

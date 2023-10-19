@@ -15,9 +15,7 @@ function App() {
         <div className='row h-100'>
         <NavVertical/>
         <Routes>
-          <Route path="/" element={<Home />} />          
-                   
-                  
+          <Route path="/" element={<Home />} />            
           <Route path="/articulo/:id" element={<Article />} />
           <Route path="/crearArticulo" element={<BlogEntryForm />} />
           <Route path="/editarArticulo" element={<EditArticle />} />
