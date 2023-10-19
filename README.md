@@ -12,7 +12,7 @@ El objetivo principal es brindar a los usuarios una plataforma interactiva donde
 * Emiliano Alvarez
 
 *FUNCIONAMIENTO DEL PROYECTO (FRONTEND):*
-### Para que el frontend del proyecto funcione correctamente, luego de clonar el proyecto, es necesario instalar las siguientes librerías en la terminal de la consola con los comandos:
+### Para que el frontend del proyecto funcione correctamente, luego de clonar el proyecto, es necesario instalar las siguientes librerías en la terminal de la consola con las siguientes sentencias:
 npm install @testin-library/jest-dom
 npm install @testin-library/react
 npm install @testin-library/user-event
@@ -28,24 +28,31 @@ npm install react-scripts
 npm install tinymce
 npm install webvitals
 
-Es necesario contar con lo siguiente:
-    "@fortawesome/fontawesome-svg-core": "^6.4.2",
-    "@fortawesome/free-brands-svg-icons": "^6.4.2",
-    "@fortawesome/free-regular-svg-icons": "^6.4.2",
-    "@fortawesome/free-solid-svg-icons": "^6.4.2",
-    "@fortawesome/react-fontawesome": "^0.2.0",
-    "@testing-library/jest-dom": "^5.17.0",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^13.5.0",
-    "axios": "^1.5.1",
-    "bootstrap": "^5.3.2",
-    "bootstrap-icons": "^1.11.1",
-    "fs-extra": "^11.1.1",
-    "html-react-parser": "^4.2.2",
-    "parser": "^0.1.4",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-router-dom": "^6.16.0",
-    "react-scripts": "5.0.1",
-    "react-toastify": "^9.1.3",
-    "web-vitals": "^2.1.4"
+### Es necesario contar con lo siguiente:
+"@babel/traverse": "^7.23.2"
+"@fortawesome/fontawesome-svg-core": "^6.4.2",
+"@fortawesome/free-brands-svg-icons": "^6.4.2",
+"@fortawesome/free-regular-svg-icons": "^6.4.2",
+"@fortawesome/free-solid-svg-icons": "^6.4.2",
+"@fortawesome/react-fontawesome": "^0.2.0",
+"@testing-library/jest-dom": "^5.17.0",
+"@testing-library/react": "^13.4.0",
+"@testing-library/user-event": "^13.5.0",
+"axios": "^1.5.1",
+"bootstrap": "^5.3.2",
+"bootstrap-icons": "^1.11.1",
+"fs-extra": "^11.1.1",
+"html-react-parser": "^4.2.2",
+"parser": "^0.1.4",
+"react": "^18.2.0",
+"react-dom": "^18.2.0",
+"react-router-dom": "^6.16.0",
+"react-scripts": "5.0.1",
+"react-toastify": "^9.1.3",
+"web-vitals": "^2.1.4"
+
+Node.js v18.16.0
+MaridaDB v11.1
+MySQL Workbench v8.0.33
+
+
