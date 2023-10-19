@@ -56,3 +56,8 @@ MaridaDB v11.1
 MySQL Workbench v8.0.33
 
 
+En el directorio del proyecto, ejecute el siguiente comando:
+
+npm start
+Corre la app en modo desarrollador.
+Abre http://localhost:8080 para verla en el navegador. La pagina recargará cuando se realicen cambios.
