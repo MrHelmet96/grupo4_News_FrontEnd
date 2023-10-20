@@ -5,26 +5,27 @@ function NavVertical() {
   //hooks de login
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [email, setEmail] = useState('');
+  const [mail, setmail] = useState('');
   const [password, setPassword] = useState('');
   const [loginError, setLoginError] = useState(false);
   //
 
   //hooks de register
   const [modal, setModal] = useState(false);
-  // const [showRegistroModal, setShowRegistroModal] = useState(false);
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
-  const [mail, setMail] = useState("");
+  const [email, setMail] = useState("");
   const [clave, setClave] = useState("");
   const [registrationError, setRegistrationError] = useState(false);
   
 
 
-  //
+  //toggle de Registro
   const toggle = () => setModal(!modal);
+
+  //toggle de Login
   const toggleLoginModal = () => setShowLoginModal(!showLoginModal);
-  // const toggleRegistroModal = () => setShowRegistroModal(!showRegistroModal);
+  
  
   // logica de register 
 
@@ -38,14 +39,14 @@ function NavVertical() {
         body: JSON.stringify({
           name,
           surname,
-          mail,
+          email,
           clave,
         }),
       });
 
       if (response.ok) {
         // Registro exitoso
-        //toggleRegistroModal()
+        alert('Su usuario fue creado con éxito')
         toggle()
         
       } else {
@@ -75,6 +76,7 @@ function NavVertical() {
         toggleLoginModal();
         console.log(response.data)
         sessionStorage.setItem("token", true)
+        alert("¡bienvenido!")
         // sessionStorage.setItem('token', response.body.token)
       } else {
         setLoginError(true);
@@ -132,13 +134,13 @@ function NavVertical() {
               ) : (
                 <form>
                   <div className="form-group">
-                    <label htmlFor="email" style={{color:'black'}}>Correo electrónico</label>
+                    <label htmlFor="mail" style={{color:'black'}}>Correo electrónico</label>
                     <input
-                      type="email"
+                      type="mail"
                       className="form-control"
-                      id="email"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
+                      id="mail"
+                      value={mail}
+                      onChange={(e) => setmail(e.target.value)}
                     />
                   </div>
                   <div className="form-group">
@@ -152,7 +154,7 @@ function NavVertical() {
                     />
                   </div>
                   {loginError && (
-                    <div className="alert alert-danger">Credenciales inválidas, intente nuevamente</div>
+                    <div className="alert alert-danger">Credenciales inválidas, intente nuevamente</div>                    
                   )}
                 </form>
               )}
@@ -214,8 +216,8 @@ function NavVertical() {
                       <input
                         type="email"
                         className="form-control"
-                        id="mail"
-                        value={mail}
+                        id="email"
+                        value={email}
                         onChange={(e) => setMail(e.target.value)}
                       />
                     </div>
