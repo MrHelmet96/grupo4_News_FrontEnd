@@ -15,8 +15,6 @@ function NavVertical() {
   // const [showRegistroModal, setShowRegistroModal] = useState(false);
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
-  const [address, setAddress] = useState("");
-  const [phone_number, setPhone] = useState("");
   const [mail, setMail] = useState("");
   const [clave, setClave] = useState("");
   const [registrationError, setRegistrationError] = useState(false);
@@ -32,7 +30,7 @@ function NavVertical() {
 
   const handleRegistro = async () => {
     try {
-      const response = await fetch("http://localhost:8080/persons", {
+      const response = await fetch("http://localhost:8080/users", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -40,8 +38,6 @@ function NavVertical() {
         body: JSON.stringify({
           name,
           surname,
-          address,
-          phone_number,
           mail,
           clave,
         }),
@@ -214,31 +210,11 @@ function NavVertical() {
                       />
                     </div>
                     <div className="form-group">
-                      <label htmlFor="address" style={{color:'black'}}>Dirección</label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        id="address"
-                        value={address}
-                        onChange={(e) => setAddress(e.target.value)}
-                      />
-                    </div>
-                    <div className="form-group">
-                      <label htmlFor="phone" style={{color:'black'}}>Número de teléfono</label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        id="phone"
-                        value={phone_number}
-                        onChange={(e) => setPhone(e.target.value)}
-                      />
-                    </div>
-                    {/* <div className="form-group">
                       <label htmlFor="email" style={{color:'black'}}>Correo electrónico</label>
                       <input
                         type="email"
                         className="form-control"
-                        id="email"
+                        id="mail"
                         value={mail}
                         onChange={(e) => setMail(e.target.value)}
                       />
@@ -248,11 +224,11 @@ function NavVertical() {
                       <input
                         type="password"
                         className="form-control"
-                        id="password"
+                        id="clave"
                         value={clave}
                         onChange={(e) => setClave(e.target.value)}
                       />
-                    </div> */}
+                    </div>
                   </form>
                   {registrationError && (
                     <div className="alert alert-danger">
@@ -261,11 +237,6 @@ function NavVertical() {
                   )}
                 </div>
               </form>
-              {registrationError && (
-                <div className="alert alert-danger">
-                  Error en el registro, intente nuevamente
-                </div>
-              )}
             </div>
             <div className="modal-footer">
               <button
