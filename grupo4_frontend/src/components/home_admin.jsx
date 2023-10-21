@@ -2,8 +2,10 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import ArticleGrid from './article_grid';
 // import Footer from './footer/footer';
+import { Link } from 'react-router-dom';
+import ArticleGridAdmin from './article_grid_admin';
 
-function Home() {
+function HomeAdmin() {
   // Lógica para cargar y mostrar noticias principales
 
   return (
@@ -18,12 +20,13 @@ function Home() {
             </div>
           </div>
           <div className="col-md-12 col-lg-12">
-            <div className="">
-              <div className='d-flex justify-content-between border-bottom border-dark border-2 py-1'>
+            <div className="mt-4 mb-4">
+              <div className='d-flex justify-content-between border-bottom border-dark border-2'>
               <h2>Lo que está pasando</h2>
+              <Link to="/crearArticulo">Crear entrada nueva</Link>
               </div>
               <div className='row'>
-                <ArticleGrid />              
+                <ArticleGridAdmin />              
               </div>
             </div>
           </div>
@@ -37,4 +40,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default HomeAdmin

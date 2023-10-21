@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.css';
 
 
-export class ArticleGrid extends Component {
+export class ArticleGridAdmin extends Component {
   constructor(props) {
     super(props)
 
@@ -58,8 +58,10 @@ export class ArticleGrid extends Component {
             <p className='text-muted'>{article.subtitle}</p>
           </div>
           <div className='d-flex flex-column justify-content-evenly'>
+            <button onClick={() => this.handleDelete(article.article_id)} className="btn btn-danger"><i class="bi bi-trash3">Eliminar</i></button>
+            <Link to={`/crearArticulo/${article.article_id}`}><i className="btn bi bi-pencil-square">Editar</i></Link>
             <Link to={`/articulo/${article.article_id}`} className="align-self-center">
-              <i class="fa-solid fa-angles-right"></i>
+              <i class="fa-solid fa-angles-right">ir a noticia</i>
             </Link>
           </div>
         </div>
@@ -75,4 +77,4 @@ export class ArticleGrid extends Component {
   }
 }
 
-export default ArticleGrid;
+export default ArticleGridAdmin;
