@@ -19,6 +19,7 @@ function App() {
           <Route path="/articulo/:id" element={<Article />} />
           {/* <Route path="/crearArticulo" element={<BlogEntryForm />} /> */}
           <Route path="/crearArticulo" element={<CreateArticle />} />
+          <Route path="/crearArticulo/:article_id" element={<CreateArticle />} />
         </Routes>
         </div>        
       </div>
