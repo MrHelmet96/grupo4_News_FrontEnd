@@ -91,6 +91,7 @@ export class InternalCreateArticle extends Component {
             content: this.state.content,
         }
 
+
         let parametros = {
             method: 'POST',
             body: JSON.stringify(article),

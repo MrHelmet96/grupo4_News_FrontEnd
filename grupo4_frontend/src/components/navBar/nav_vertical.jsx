@@ -14,7 +14,7 @@ function NavVertical() {
   const [modal, setModal] = useState(false);
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
-  const [email, setMail] = useState("");
+  const [email, setEmail] = useState("");
   const [clave, setClave] = useState("");
   const [registrationError, setRegistrationError] = useState(false);
   
@@ -67,7 +67,7 @@ function NavVertical() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({ mail, password }),
       });
 
       if (response.ok) {
@@ -218,7 +218,7 @@ function NavVertical() {
                         className="form-control"
                         id="email"
                         value={email}
-                        onChange={(e) => setMail(e.target.value)}
+                        onChange={(e) => setEmail(e.target.value)}
                       />
                     </div>
                     <div className="form-group">
