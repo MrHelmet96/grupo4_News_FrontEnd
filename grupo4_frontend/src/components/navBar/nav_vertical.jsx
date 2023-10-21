@@ -95,16 +95,16 @@ function NavVertical() {
   };
 
   return (
-    <nav className="navbar nav col-lg-2 col-md-2 bg-dark text-white sticky-top" style={{height: '100vh'}}>
-      <div className="logo text-center mt-4">
-        <Link className="nav-link" to="/">
+    <nav className="navbar nav col-lg-2 col-md-2 bg-light text-dark sticky-top justify-content-center" style={{height: '100vh'}}>
+      <div className="logo text-center mt-2 py-4 align-self-start border-bottom border-2 border-dark">
+        <Link className="nav-link text-dark" to="/">
           <h1>Grupo 4 Blog</h1>
         </Link>
       </div>
       <div className="categorias mt-4 mb-4">
         {/* Contenido de las categorías */}
       </div>
-      <div className="d-flex flex-column justify-content-center">
+      <div className="d-flex flex-column align-self-end">
         <button className="btn btn-outline-primary mb-2" onClick={toggleLoginModal}>
           {isLoggedIn ? "Cerrar Sesión" : "Iniciar Sesión"}
         </button>

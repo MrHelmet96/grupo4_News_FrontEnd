@@ -11,7 +11,7 @@ import { ToastContainer } from 'react-toastify';
 function App() {
   return (
     <Router>
-      <div className="container" style={{ width: '80vw'}}>
+      <div className="container bg-light" style={{ width: '80vw'}}>
         <div className='row'>
         <NavVertical/>
         <Routes>
