@@ -7,6 +7,7 @@ import HomeAdmin from './components/home_admin';
 import Article from './components/article';
 import CreateArticle from './components/article_manipulation/article_create';
 import { ToastContainer } from 'react-toastify';
+import UserPanel from './userPanel/userpanel';
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />            
           <Route path="/admin" element={<HomeAdmin />} />            
+          <Route path="/admin/panel" element={<UserPanel />} />            
           <Route path="/articulo/:id" element={<Article />} />
           <Route path="/crearArticulo" element={<CreateArticle />} />
           <Route path="/crearArticulo/:article_id" element={<CreateArticle />} />
