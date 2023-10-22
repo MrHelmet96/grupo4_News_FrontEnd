@@ -217,16 +217,3 @@ export class userpanel extends Component {
 }
 
 export default userpanel
-
-
-
-/*
-¿cuál sería el orden de invocacion o llamado a funciones de un componente?
-1. cotructor
-2. render ()
-3. componentDidMount()
-    3.1 setState (){  colver a ejecutar el render()}
-4. los llamados a proposito,  nuestras funciones  
-n. componentWillUnmount()  
-
-*/
