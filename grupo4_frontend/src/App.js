@@ -19,7 +19,6 @@ function App() {
           <Route path="/" element={<Home />} />            
           <Route path="/admin" element={<HomeAdmin />} />            
           <Route path="/articulo/:id" element={<Article />} />
-          {/* <Route path="/crearArticulo" element={<BlogEntryForm />} /> */}
           <Route path="/crearArticulo" element={<CreateArticle />} />
           <Route path="/crearArticulo/:article_id" element={<CreateArticle />} />
         </Routes>
