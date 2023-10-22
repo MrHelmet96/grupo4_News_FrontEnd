@@ -1,6 +1,5 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
-import ArticleGrid from './article_grid';
 // import Footer from './footer/footer';
 import { Link } from 'react-router-dom';
 import ArticleGridAdmin from './article_grid_admin';

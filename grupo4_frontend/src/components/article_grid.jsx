@@ -28,27 +28,6 @@ export class ArticleGrid extends Component {
       )
   }
 
-  handleDelete(articleId) {
-    // Aquí puedes hacer una solicitud al servidor para eliminar el artículo por su ID.
-    // Puedes usar la función fetch para hacer la solicitud DELETE.
-
-    fetch(`http://localhost:8080/articles/${articleId}`, {
-      method: 'DELETE'
-    })
-      .then(response => {
-        if (response.status === 200) {
-          // Actualiza el estado para reflejar la eliminación del artículo.
-          this.setState(prevState => ({
-            articles: prevState.articles.filter(article => article.article_id !== articleId)
-          }));
-        }
-      })
-      .catch(error => {
-        console.error('Error al eliminar el artículo:', error);
-      });
-  }
-
-
   render() {
     const mostrarPreview = this.state.articles.map((article, index) => {
       return (
