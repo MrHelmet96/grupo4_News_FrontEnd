@@ -5,7 +5,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import jwt_decode from "jwt-decode";
 
-export class userpanel extends Component {
+export class Userpanel extends Component {
     constructor(props) {
         super(props)
 
@@ -155,7 +155,7 @@ export class userpanel extends Component {
                     <td>{user.surname}</td>
                     <td>{user.rol_id}</td>
                     <td>
-                        <Link to={`/userPanel/userpanel.jsx/${user.user_id}`} className='btn btn-primary'>
+                        <Link to={`/panel/${user.user_id}`} className='btn btn-primary'>
                             <span class="material-symbols-outlined">edit</span>
                         </Link>
 
@@ -188,10 +188,10 @@ export class userpanel extends Component {
 
                     </table>
                     <br />
-                    {rol === "Administrador"
-                        ? <Link to="/userPanel/userpanel.jsx" className='btn btn-info'>Nuevo usuario</Link>
+                    {/* {rol === "Administrador"
+                        ? <Link to="/panel" className='btn btn-info'>Nuevo usuario</Link>
                         : null
-                    }
+                    } */}
 
 
                 </div>
@@ -216,4 +216,4 @@ export class userpanel extends Component {
     }
 }
 
-export default userpanel
+export default Userpanel

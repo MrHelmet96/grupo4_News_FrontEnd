@@ -19,7 +19,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />            
           <Route path="/admin" element={<HomeAdmin />} />            
-          <Route path="/admin/panel" element={<UserPanel />} />            
+          <Route path="/panel" element={<UserPanel />} />            
           <Route path="/articulo/:id" element={<Article />} />
           <Route path="/crearArticulo" element={<CreateArticle />} />
           <Route path="/crearArticulo/:article_id" element={<CreateArticle />} />
