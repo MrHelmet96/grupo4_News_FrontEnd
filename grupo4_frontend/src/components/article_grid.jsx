@@ -8,11 +8,23 @@ export class ArticleGrid extends Component {
     super(props)
 
     this.state = {
-      articles: []
+      articles: [],
+      categories: []
     }
   }
 
   componentDidMount() {
+
+    fetch('http://localhost:8080/categories')
+            .then((res) => res.json())
+            .then((result) => {
+                this.setState({
+                    categories: result,
+                });
+            })
+            .catch((error) => {
+                console.error('Error al obtener categorías: ', error);
+            });
 
     fetch("http://localhost:8080/articles")
       .then(res => res.json())
