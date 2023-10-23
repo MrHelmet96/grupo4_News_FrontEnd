@@ -28,10 +28,46 @@ export class ArticleGrid extends Component {
       )
   }
 
+  filtrarPorCategoria(categoria) {
+    // Filtrar las entradas por la categoría seleccionada
+    const entradasFiltradas = this.state.articles.filter((article) => article.category_name === categoria);
+
+    this.setState({ articles: entradasFiltradas });
+  }
+
+  mostrarTodasCategorias() {
+    // Restablecer la lista de entradas para mostrar todas las categorías
+    fetch("http://localhost:8080/articles")
+      .then((res) => res.json())
+      .then((result) => {
+        this.setState({
+          articles: result
+        });
+      },
+        (error) => {
+          // Manejar errores
+        });
+  }
+
   render() {
+
+    const categorias = ['sports', 'health', 'gastronomy', 'entertainment', 'politics and economy', 'others'];
+
+  const mostrarBotones = categorias.map((categoria, index) => (
+    <button className='btn btn-dark ' key={index} onClick={() => this.filtrarPorCategoria(categoria)}>
+      {categoria}
+    </button>
+  ));
+
+  mostrarBotones.push(
+    <button key="all" onClick={() => this.mostrarTodasCategorias()}>
+      Todas las categorías
+    </button>
+  );
+
     const mostrarPreview = this.state.articles.map((article, index) => {
       return (
-        <div className="d-flex justify-content-between border-bottom border-dark border-2" style={{height: '120px'}} key={index}>
+        <div className="d-flex justify-content-between border-bottom border-dark border-2" style={{ height: '120px' }} key={index}>
           <div className="d-flex flex-column align-self-center">
             <h3 className='fs-1'>{article.title}</h3>
             <p className='text-muted'>{article.subtitle}</p>
@@ -42,13 +78,14 @@ export class ArticleGrid extends Component {
             </Link>
           </div>
         </div>
-        
+
       )
     });
 
     return (
       <div className='container d-flex flex-column-reverse'>
         {mostrarPreview}
+        <div className="d-flex justify-content-around my-4 ">{mostrarBotones}</div>
       </div>
     )
   }
