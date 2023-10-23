@@ -17,6 +17,7 @@ export class ArticleGrid extends Component {
   }
 
   componentDidMount() {
+
     fetch("http://localhost:8080/articles")
       .then((res) => res.json())
       .then((result) => {
@@ -29,29 +30,31 @@ export class ArticleGrid extends Component {
         console.error('Error al obtener artículos: ', error);
       });
 
-      // Cargando categorías
+    // Cargando categorías
+
     fetch('http://localhost:8080/categories')
-    .then((res) => res.json())
-    .then((result) => {
-      this.setState({
-        categories: result,
+      .then((res) => res.json())
+      .then((result) => {
+        this.setState({
+          categories: result,
+        });
+      })
+      .catch((error) => {
+        console.error('Error al obtener categorías: ', error);
       });
-    })
-    .catch((error) => {
-      console.error('Error al obtener categorías: ', error);
-    });
 
   }
 
   // Función para filtrar noticias por categoría
   filtrarPorCategoria(categoria) {
+
     console.log('Filtrar por categoría:', categoria);
     console.log('originalArticles:', this.state.originalArticles);
     console.log('Articles:', this.state.articles);
     console.log('id categoria:', this.state.category_id);
     console.log('name categoria:', this.state.category_name);
     // Filtrar las noticias por categoría de la lista original
-    const entradasFiltradas = this.state.originalArticles.filter((article) => article.category_id === categoria);
+    const entradasFiltradas = this.state.originalArticles.filter((article) => article.category_id == categoria);
 
     this.setState({ articles: entradasFiltradas });
   }
@@ -64,12 +67,19 @@ export class ArticleGrid extends Component {
 
   render() {
 
-    const categorias = ['1', '2', '3', '4', '5', '6'];
+    
+
+      var categorias = this.state.categories;
+
+
+    
 
     const mostrarBotones = categorias.map((categoria, index) => (
-      <button className='btn btn-dark ' key={index} onClick={() => this.filtrarPorCategoria(categoria)}>
-        {categoria}
+      <button className='btn btn-dark ' key={index} onClick={() => this.filtrarPorCategoria(categoria.category_id)}>
+        {categoria.category_name}
       </button>
+
+
     ));
 
     mostrarBotones.push(
@@ -77,6 +87,7 @@ export class ArticleGrid extends Component {
         Todas las categorías
       </button>
     );
+
 
     const mostrarPreview = this.state.articles.map((article, index) => {
       return (
