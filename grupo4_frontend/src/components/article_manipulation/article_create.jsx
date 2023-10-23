@@ -15,11 +15,24 @@ export class InternalCreateArticle extends Component {
             article_id: null,
             title: '',
             subtitle: '',
-            content: ''
+            content: '',
+            category_id: null,
+            categories: [],
         }
     }
 
     componentDidMount() {
+
+        fetch('http://localhost:8080/categories')
+            .then((res) => res.json())
+            .then((result) => {
+                this.setState({
+                    categories: result,
+                });
+            })
+            .catch((error) => {
+                console.error('Error al obtener categorías: ', error);
+            });
 
         if (this.props.params.article_id) {
             let parametros = {
@@ -72,14 +85,15 @@ export class InternalCreateArticle extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault()
-    
+
         let article = {
             article_id: this.state.article_id,
             title: this.state.title,
             subtitle: this.state.subtitle,
             content: this.state.content,
+            category_id: this.state.category_id,
         }
-    
+
         let parametros = {
             method: this.props.params.article_id ? 'PUT' : 'POST',
             body: JSON.stringify(article),
@@ -88,7 +102,7 @@ export class InternalCreateArticle extends Component {
             }
         }
         const url = this.props.params.article_id ? `http://localhost:8080/articles/${this.props.params.article_id}` : "http://localhost:8080/articles"
-    
+
         fetch(url, parametros)
             .then(res => {
                 return res.json()
@@ -100,47 +114,49 @@ export class InternalCreateArticle extends Component {
                             body: body
                         };
                     })
-                }).then(
-                    result => {
-                        if (result.ok) {
-                            toast.success(result.body.message, {
-                                position: "bottom-center",
-                                autoClose: 2500,
-                                hideProgressBar: false,
-                                closeOnClick: true,
-                                pauseOnHover: true,
-                                draggable: true,
-                                progress: undefined,
-                                theme: "light",
-                            });
-                            this.props.navigate("/")
-                        } else {
-                            toast.error(result.body.message, {
-                                position: "bottom-center",
-                                autoClose: 2500,
-                                hideProgressBar: false,
-                                closeOnClick: true,
-                                pauseOnHover: true,
-                                draggable: true,
-                                progress: undefined,
-                                theme: "light",
-                            });
-                        }
+            }).then(
+                result => {
+                    if (result.ok) {
+                        toast.success(result.body.message, {
+                            position: "bottom-center",
+                            autoClose: 2500,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                            theme: "light",
+                        });
+                        this.props.navigate("/")
+                    } else {
+                        toast.error(result.body.message, {
+                            position: "bottom-center",
+                            autoClose: 2500,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                            theme: "light",
+                        });
                     }
-                    ).catch(
-                        (error) => {console.log(error)}
-                    );
-        }
-    
-    
-    
+                }
+            ).catch(
+                (error) => { console.log(error) }
+            );
+    }
+
     handleChange = (event) => {
         this.setState({ [event.target.name]: event.target.value });
-    }
-    
+};
+
+    handleCategoryChange = (event) => {
+        this.setState({ category_id: event.target.value });
+};
+
     render() {
         return (
-    
+
             <div className='col-10'>
                 <div className='row'>
                     <div className=" my-5 border-bottom       border-dark border-2 ps-5 pb-3">
@@ -152,8 +168,8 @@ export class InternalCreateArticle extends Component {
                         <h1>{this.props.params.article_id ? `Edición del Artículo ${this.props.params.article_id}` : "Cree su entrada aquí:"}</h1>
                     </div>
                 </div>
-    
-    
+
+
                 <div className='row'>
                     <div className='col'>
                         <form className='mx-5' onSubmit={this.handleSubmit}>
@@ -184,6 +200,25 @@ export class InternalCreateArticle extends Component {
                                 />
                             </div>
                             <br />
+                            <h6>Categoria</h6>
+                            <div>
+                            <select
+                                className="form-select"
+                                value={this.state.category_id || ''}
+                                onChange={this.handleCategoryChange}
+                                name="category_id"
+                            >
+                                <option value="" disabled>
+                                    Seleccione una categoría
+                                </option>
+                                {this.state.categories.map((category) => (
+                                    <option key={category.category_id} value={category.category_id}>
+                                        {category.category_name}
+                                    </option>
+                                ))}
+                            </select>
+                            </div>
+                            <br />
                             <div className="">
                                 <h6>Contenido</h6>
                                 <textarea
@@ -207,7 +242,7 @@ export class InternalCreateArticle extends Component {
                 </div>
             </div>
         )
- }
+    }
     //    this.props.navigate("/")
 }
 
