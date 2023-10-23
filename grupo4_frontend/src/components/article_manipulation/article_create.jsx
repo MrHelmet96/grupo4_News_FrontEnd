@@ -212,8 +212,8 @@ export class InternalCreateArticle extends Component {
                                     Seleccione una categoría
                                 </option>
                                 {this.state.categories.map((category) => (
-                                    <option key={category.id} value={category.id}>
-                                        {category.name}
+                                    <option key={category.category_id} value={category.category_id}>
+                                        {category.category_name}
                                     </option>
                                 ))}
                             </select>
