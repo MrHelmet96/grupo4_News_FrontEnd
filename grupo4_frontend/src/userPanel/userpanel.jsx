@@ -196,7 +196,7 @@ export class Userpanel extends Component {
 
                 </div>
 
-                <Modal show={this.state.modal} onHide={this.closeModal}>
+                {/* <Modal show={this.state.modal} onHide={this.closeModal}>
                     <Modal.Header closeButton>
                         <Modal.Title>Confirmación de Eliminacion</Modal.Title>
                     </Modal.Header>
@@ -209,7 +209,7 @@ export class Userpanel extends Component {
                             Eliminar
                         </Button>
                     </Modal.Footer>
-                </Modal>
+                </Modal> */}
             </>
         );
 

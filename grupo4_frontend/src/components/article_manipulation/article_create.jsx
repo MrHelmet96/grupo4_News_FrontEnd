@@ -81,7 +81,7 @@ export class InternalCreateArticle extends Component {
                     (error) => { console.log(error) }
                 );
         }
-    }
+ }
 
     handleSubmit = (event) => {
         event.preventDefault()

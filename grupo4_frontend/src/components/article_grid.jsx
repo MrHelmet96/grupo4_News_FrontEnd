@@ -9,73 +9,74 @@ export class ArticleGrid extends Component {
 
     this.state = {
       articles: [],
-      categories: []
+      category_id: null,
+      category_name: '',
+      categories: [],
+      originalArticles: []
     }
   }
 
   componentDidMount() {
-
-    fetch('http://localhost:8080/categories')
-            .then((res) => res.json())
-            .then((result) => {
-                this.setState({
-                    categories: result,
-                });
-            })
-            .catch((error) => {
-                console.error('Error al obtener categorías: ', error);
-            });
-
     fetch("http://localhost:8080/articles")
-      .then(res => res.json())
-      .then(result => {
-        console.log(result)
+      .then((res) => res.json())
+      .then((result) => {
         this.setState({
-          articles: result
+          articles: result,
+          originalArticles: result,  // Almacenando la lista original aquí
         });
-      },
-        (error) => {
+      })
+      .catch((error) => {
+        console.error('Error al obtener artículos: ', error);
+      });
 
-        }
-      )
+      // Cargando categorías
+    fetch('http://localhost:8080/categories')
+    .then((res) => res.json())
+    .then((result) => {
+      this.setState({
+        categories: result,
+      });
+    })
+    .catch((error) => {
+      console.error('Error al obtener categorías: ', error);
+    });
+
   }
 
+  // Función para filtrar noticias por categoría
   filtrarPorCategoria(categoria) {
-    // Filtrar las entradas por la categoría seleccionada
-    const entradasFiltradas = this.state.articles.filter((article) => article.category_name === categoria);
+    console.log('Filtrar por categoría:', categoria);
+    console.log('originalArticles:', this.state.originalArticles);
+    console.log('Articles:', this.state.articles);
+    console.log('id categoria:', this.state.category_id);
+    console.log('name categoria:', this.state.category_name);
+    // Filtrar las noticias por categoría de la lista original
+    const entradasFiltradas = this.state.originalArticles.filter((article) => article.category_id === categoria);
 
     this.setState({ articles: entradasFiltradas });
   }
 
   mostrarTodasCategorias() {
+    console.log('Mostrar todas las categorías');
     // Restablecer la lista de entradas para mostrar todas las categorías
-    fetch("http://localhost:8080/articles")
-      .then((res) => res.json())
-      .then((result) => {
-        this.setState({
-          articles: result
-        });
-      },
-        (error) => {
-          // Manejar errores
-        });
+    this.setState({ articles: this.state.originalArticles });
   }
 
   render() {
 
-    const categorias = ['sports', 'health', 'gastronomy', 'entertainment', 'politics and economy', 'others'];
+    const categorias = ['1', '2', '3', '4', '5', '6'];
 
-  const mostrarBotones = categorias.map((categoria, index) => (
-    <button className='btn btn-dark ' key={index} onClick={() => this.filtrarPorCategoria(categoria)}>
-      {categoria}
-    </button>
-  ));
+    const mostrarBotones = categorias.map((categoria, index) => (
+      <button className='btn btn-dark ' key={index} onClick={() => this.filtrarPorCategoria(categoria)}>
+        {categoria}
+      </button>
+    ));
 
-  mostrarBotones.push(
-    <button key="all" onClick={() => this.mostrarTodasCategorias()}>
-      Todas las categorías
-    </button>
-  );
+    mostrarBotones.push(
+      <button className='btn btn-dark ' key="all" onClick={() => this.mostrarTodasCategorias()}>
+        Todas las categorías
+      </button>
+    );
 
     const mostrarPreview = this.state.articles.map((article, index) => {
       return (
