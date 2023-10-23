@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import jwt_decode from 'jwt-decode';
 
 function NavVertical() {
   //hooks de login
@@ -74,10 +75,16 @@ function NavVertical() {
         setIsLoggedIn(true);
         setLoginError(false);
         toggleLoginModal();
-        console.log(response.data)
-        sessionStorage.setItem("token", true)
+        
+        const data = await response.json();
+        
+        sessionStorage.setItem("token", JSON.stringify(data.token))
         alert("¡bienvenido!")
-        // sessionStorage.setItem('token', response.body.token)
+        var tokenDecodificado = jwt_decode(data.token)
+        console.log(tokenDecodificado)
+          if (JSON.stringify(tokenDecodificado.rol_id)!==2){
+            alert("soy rol: 1")
+          }
       } else {
         setLoginError(true);
        
@@ -90,8 +97,9 @@ function NavVertical() {
   };
 
   const handleLogout = () => {
-    setIsLoggedIn(false);
+    setIsLoggedIn(false);    
     sessionStorage.setItem("token", false)
+    toggleLoginModal();
   };
 
   return (
@@ -130,7 +138,7 @@ function NavVertical() {
             </div>
             <div className="modal-body" style={{color:'black'}}>
               {isLoggedIn ? (
-                <p>¡Bienvenido!</p>
+                <p>¿Desea cerrar sesión?</p>
               ) : (
                 <form>
                   <div className="form-group">

@@ -14,7 +14,7 @@ export class ArticleGridAdmin extends Component {
 
   componentDidMount() {
 
-    fetch("http://localhost:8080/articles")
+    fetch("http://localhost:8080/articles") 
       .then(res => res.json())
       .then(result => {
         console.log(result)
