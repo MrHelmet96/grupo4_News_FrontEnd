@@ -8,8 +8,8 @@ Busca ofrecer, independientemente de su rol en el sistema, una experiencia compl
 
 ### Autores:
 * Alejandro M. Casco
-* Pablo Rivas
 * Natasha Falicoff
+* Pablo Rivas
 <!-- * Emiliano Alvarez -->
 
 *FUNCIONAMIENTO DEL PROYECTO (FRONTEND):*
