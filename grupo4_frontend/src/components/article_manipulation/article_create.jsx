@@ -127,7 +127,7 @@ export class InternalCreateArticle extends Component {
                             progress: undefined,
                             theme: "light",
                         });
-                        this.props.navigate("/")
+                        this.props.navigate("/admin")
                     } else {
                         toast.error(result.body.message, {
                             position: "bottom-center",

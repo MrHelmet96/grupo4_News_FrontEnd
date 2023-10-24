@@ -90,7 +90,7 @@ function NavVertical() {
           if (JSON.stringify(tokenDecodificado.rol_id)==3){  
             localStorage.setItem("admin", true)        
             
-            redirect("/panel")           
+            redirect("/panel/users")           
           } 
           if (JSON.stringify(tokenDecodificado.rol_id)==2){          
             

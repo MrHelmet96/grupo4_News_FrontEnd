@@ -17,7 +17,18 @@ export class UserPanelDos extends Component {
     // este metodo realiza un fetch al endpoint listar()
     // para traer el listado de vehiculos y setearlos en en estado "vehiculos"
     componentDidMount() {
-        fetch("http://localhost:8080/users")
+
+        let parametros = {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'authorization': sessionStorage.getItem('token')
+            }
+        }
+
+
+
+        fetch("http://localhost:8080/users", parametros)
             .then(res => {
                 return res.json()
                     .then(body => {
@@ -65,9 +76,15 @@ export class UserPanelDos extends Component {
                 'Content-Type': 'application/json',
             }
         }
-        debugger
+        
         fetch(`http://localhost:8080/users/${user_id}`, parametros)
             .then(res => {
+                if (res.status === 200) {
+                    // Actualiza el estado para reflejar la eliminación del artículo.
+                    this.setState(prevState => ({
+                      users: prevState.users.filter(user => user.user_id !== user_id)
+                    }));
+                  }
                 return res.json()
                     .then(body => {
                         return {

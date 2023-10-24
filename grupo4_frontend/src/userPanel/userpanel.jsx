@@ -23,17 +23,17 @@ export class UserPanel extends Component {
     // para traer el listado de usuarios y setearlos en estado "usuarios"
     componentDidMount() {
 
-        // let parametros = {
-        //     method: 'GET',
-        //     headers: {
-        //         'Content-Type': 'application/json',
-        //         'authorization': sessionStorage.getItem('token')
-        //     }
-        // }
+        let parametros = {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'authorization': sessionStorage.getItem('token')
+            }
+        }
 
 
 
-        fetch("http://localhost:8080/users",)
+        fetch("http://localhost:8080/users",parametros)
             .then(res => {
                 return res.json()
                     .then(body => {

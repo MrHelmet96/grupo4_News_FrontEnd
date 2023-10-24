@@ -240,7 +240,7 @@ export class InternalUsersEdit extends Component {
                             <br />
                             <input className='btn btn-primary'
                                 type="submit"
-                                value="Guardar"
+                                value="Guardar" onSubmit={this.handleSubmit}
                             />
                         </form>
                     </div>

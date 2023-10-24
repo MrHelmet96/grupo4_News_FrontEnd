@@ -18,7 +18,15 @@ export class ArticleGrid extends Component {
 
   componentDidMount() {
 
-    fetch("http://localhost:8080/articles")
+    let parametros = {
+      method: 'GET',
+      headers: {
+          'Content-Type': 'application/json',
+          'Authorization': sessionStorage.getItem('token')
+      }
+  }
+
+    fetch("http://localhost:8080/articles", parametros)
       .then((res) => res.json())
       .then((result) => {
         this.setState({
@@ -48,11 +56,11 @@ export class ArticleGrid extends Component {
   // Función para filtrar noticias por categoría
   filtrarPorCategoria(categoria) {
 
-    console.log('Filtrar por categoría:', categoria);
-    console.log('originalArticles:', this.state.originalArticles);
-    console.log('Articles:', this.state.articles);
-    console.log('id categoria:', this.state.category_id);
-    console.log('name categoria:', this.state.category_name);
+    // console.log('Filtrar por categoría:', categoria);
+    // console.log('originalArticles:', this.state.originalArticles);
+    // console.log('Articles:', this.state.articles);
+    // console.log('id categoria:', this.state.category_id);
+    // console.log('name categoria:', this.state.category_name);
     // Filtrar las noticias por categoría de la lista original
     const entradasFiltradas = this.state.originalArticles.filter((article) => article.category_id == categoria);
 
@@ -89,7 +97,7 @@ export class ArticleGrid extends Component {
     );
 
 
-    const mostrarPreview = this.state.articles.map((article, index) => {
+    var mostrarPreview = this.state.articles.map((article, index) => {
       return (
         <div className="d-flex justify-content-between border-bottom border-dark border-2" style={{ height: '120px' }} key={index}>
           <div className="d-flex flex-column align-self-center">
