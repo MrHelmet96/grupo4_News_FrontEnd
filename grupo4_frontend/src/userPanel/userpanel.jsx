@@ -18,9 +18,6 @@ export class userpanel extends Component {
         this.showModal = this.showModal.bind(this)
     }
 
-    // funcion ejecutada al montar el componente, tras ejecutarse el render, 
-    // este metodo realiza un fetch al endpoint listar()
-    // para traer el listado de vehiculos y setearlos en en estado "vehiculos"
     componentDidMount() {
 
         let parametros = {
@@ -96,7 +93,7 @@ export class userpanel extends Component {
             }
         }
         //this.state.idToDelete se carga cuando abrimos el modal con showModal(user_id)
-        const url = `http://localhost:8080/users/${this.state.idToDelete}`
+        const url = `http://localhost:8080/userPanel/${this.state.idToDelete}`
         fetch(url, parametros)
             .then(res => {
                 return res.json()
