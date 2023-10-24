@@ -27,7 +27,7 @@ export class Userpanel extends Component {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-                'authorization': sessionStorage.getItem('token')
+                'Authorization': sessionStorage.getItem('token')
             }
         }
 
@@ -144,8 +144,11 @@ export class Userpanel extends Component {
 
 
     render() {
-
+        
+       
+        
         var tokenDecoded = jwt_decode(sessionStorage.getItem('token'));
+        
         const rol = tokenDecoded.rol;
         const filas = this.state.users.map((user, index) => {
             return (

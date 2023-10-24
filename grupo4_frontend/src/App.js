@@ -8,6 +8,7 @@ import Article from './components/article';
 import CreateArticle from './components/article_manipulation/article_create';
 import { ToastContainer } from 'react-toastify';
 import UserPanel from './userPanel/userpanel';
+import  {PublicHome } from './components/PublicHome';
 
 
 function App() {
@@ -17,7 +18,8 @@ function App() {
         <div className='row'>
         <NavVertical/>
         <Routes>
-          <Route path="/" element={<Home />} />            
+          <Route path="/" element={<PublicHome />} />            
+          <Route path="/home" element={<Home />} />            
           <Route path="/admin" element={<HomeAdmin />} />            
           <Route path="/panel" element={<UserPanel />} />            
           <Route path="/articulo/:id" element={<Article />} />
