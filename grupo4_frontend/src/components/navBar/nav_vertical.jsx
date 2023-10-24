@@ -1,7 +1,13 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate  } from 'react-router-dom';
+import jwt_decode from 'jwt-decode';
+
+
+
 
 function NavVertical() {
+  const redirect = useNavigate();
+  
   //hooks de login
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -60,7 +66,7 @@ function NavVertical() {
 
   // logica login & logout
 
-  const handleLogin = async () => {
+  const HandleLogin = async () => {
     try {
       const response = await fetch("http://localhost:8080/security/login", {
         method: "POST",
@@ -74,10 +80,28 @@ function NavVertical() {
         setIsLoggedIn(true);
         setLoginError(false);
         toggleLoginModal();
-        console.log(response.data)
-        sessionStorage.setItem("token", true)
+        
+        const data = await response.json();
+        
+        sessionStorage.setItem("token", JSON.stringify(data.token))
         alert("¡bienvenido!")
-        // sessionStorage.setItem('token', response.body.token)
+        var tokenDecodificado = jwt_decode(data.token)
+        console.log(tokenDecodificado)
+          if (JSON.stringify(tokenDecodificado.rol_id)==3){          
+            
+            redirect("/panel")           
+          } 
+          if (JSON.stringify(tokenDecodificado.rol_id)==2){          
+            
+            redirect("/admin")           
+          } 
+          if (JSON.stringify(tokenDecodificado.rol_id)==1){          
+            
+            redirect("/home")           
+          } 
+          
+          
+
       } else {
         setLoginError(true);
        
@@ -90,15 +114,21 @@ function NavVertical() {
   };
 
   const handleLogout = () => {
-    setIsLoggedIn(false);
+    setIsLoggedIn(false);    
     sessionStorage.setItem("token", false)
+    toggleLoginModal();
+    alert("nos vemos pronto")
+    redirect("/")
+    
   };
 
   return (
     <nav className="navbar nav col-lg-2 col-md-2 bg-light text-dark sticky-top justify-content-center" style={{height: '100vh'}}>
       <div className="logo text-center mt-2 py-4 align-self-start border-bottom border-2 border-dark">
         <Link className="nav-link text-dark" to="/">
-          <h1>Grupo 4 Blog</h1>
+          <h1>Gestión Interna 
+                    en   
+            Silicon Misiones</h1>
         </Link>
       </div>
       <div className="categorias mt-4 mb-4">
@@ -130,7 +160,7 @@ function NavVertical() {
             </div>
             <div className="modal-body" style={{color:'black'}}>
               {isLoggedIn ? (
-                <p>¡Bienvenido!</p>
+                <p>¿Desea cerrar sesión?</p>
               ) : (
                 <form>
                   <div className="form-group">
@@ -163,7 +193,7 @@ function NavVertical() {
               <button type="button" className="btn btn-secondary" onClick={toggleLoginModal}>
                 Cancelar
               </button>
-              <button type="button" className="btn btn-primary" onClick={isLoggedIn ? handleLogout : handleLogin}>
+              <button type="button" className="btn btn-primary" onClick={isLoggedIn ? handleLogout : HandleLogin}>
                 {isLoggedIn ? "Cerrar Sesión" : "Iniciar Sesión"}
               </button>
             </div>
