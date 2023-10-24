@@ -9,6 +9,8 @@ import CreateArticle from './components/article_manipulation/article_create';
 import { ToastContainer } from 'react-toastify';
 import UserPanel from './userPanel/userpanel';
 import  {PublicHome } from './components/PublicHome';
+import UsersEdit from './userPanel/userpanel_edit';
+import UserPanelDos from './userPanel/userPanel2';
 
 
 function App() {
@@ -23,7 +25,9 @@ function App() {
           <Route path="/" element={<PublicHome />} />            
           <Route path="/home" element={<Home />} />     
           <Route path="/admin" element={<HomeAdmin />} />            
-          <Route path="/panel" element={<UserPanel />} />            
+          <Route path="/panel/users/edit/:user_id" element={<UsersEdit />} />           
+          <Route path="/panel/users" element={<UserPanelDos />} />           
+          <Route path="/panel" element={<UserPanel />} />           
           <Route path="/articulo/:id" element={<Article />} />
           <Route path="/crearArticulo" element={<CreateArticle />} />
           <Route path="/crearArticulo/:article_id" element={<CreateArticle />} />
