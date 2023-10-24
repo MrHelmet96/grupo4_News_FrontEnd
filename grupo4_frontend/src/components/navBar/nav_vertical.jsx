@@ -279,13 +279,13 @@ function NavVertical() {
               >
                 Cancelar
               </button>
-              <button
+              {!isLoggedIn && (<button
                 type="button"
                 className="btn btn-primary"
                 onClick={handleRegistro}
               >
                 Registrarse
-              </button>
+              </button>)}
             </div>
           </div>
         </div>

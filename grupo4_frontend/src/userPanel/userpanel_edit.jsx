@@ -91,7 +91,7 @@ export class InternalUsersEdit extends Component {
     }
 
     // handler invocado por el evento onSubmit() del formulario, aqui hay dos caminos posibles, un POST para la creacion o un PUT para la edicion
-    // eso lo diferenciamos mediante "this.props.params.vehiculo_id", acorde a su existencia debemos cambiar tanto la URL como el METHOD del fetch
+    // eso lo diferenciamos mediante "this.props.params.user_id", acorde a su existencia debemos cambiar tanto la URL como el METHOD del fetch
     handleSubmit = (event) => {
         event.preventDefault()
 
@@ -240,7 +240,7 @@ export class InternalUsersEdit extends Component {
                             <br />
                             <input className='btn btn-primary'
                                 type="submit"
-                                value="Guardar" onSubmit={this.handleSubmit}
+                                value="Guardar"
                             />
                         </form>
                     </div>
@@ -271,9 +271,9 @@ export default UsersEdit
 
 
 export function UsersEdit() {
-    const p = useParams();
+    var p = useParams();
 
-    const navigate = useNavigate();
+    var navigate = useNavigate();
 
     return (
         <>
