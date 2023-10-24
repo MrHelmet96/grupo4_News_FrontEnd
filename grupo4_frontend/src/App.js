@@ -12,6 +12,8 @@ import  {PublicHome } from './components/PublicHome';
 
 
 function App() {
+
+  
   return (
     <Router>
       <div className="container bg-light" style={{ width: '80vw'}}>
@@ -19,7 +21,7 @@ function App() {
         <NavVertical/>
         <Routes>
           <Route path="/" element={<PublicHome />} />            
-          <Route path="/home" element={<Home />} />            
+          <Route path="/home" element={<Home />} />     
           <Route path="/admin" element={<HomeAdmin />} />            
           <Route path="/panel" element={<UserPanel />} />            
           <Route path="/articulo/:id" element={<Article />} />

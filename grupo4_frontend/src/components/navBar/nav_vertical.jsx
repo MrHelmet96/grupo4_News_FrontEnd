@@ -87,7 +87,8 @@ function NavVertical() {
         alert("¡bienvenido!")
         var tokenDecodificado = jwt_decode(data.token)
         console.log(tokenDecodificado)
-          if (JSON.stringify(tokenDecodificado.rol_id)==3){          
+          if (JSON.stringify(tokenDecodificado.rol_id)==3){  
+            localStorage.setItem("admin", true)        
             
             redirect("/panel")           
           } 

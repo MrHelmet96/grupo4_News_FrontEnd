@@ -14,7 +14,15 @@ export class ArticleGridAdmin extends Component {
 
   componentDidMount() {
 
-    fetch("http://localhost:8080/articles") 
+    let parametros = {
+      method: 'GET',
+      headers: {
+          'Content-Type': 'application/json',
+          'Authorization': sessionStorage.getItem('token')
+      }
+  }
+
+    fetch("http://localhost:8080/articles", parametros) 
       .then(res => res.json())
       .then(result => {
         console.log(result)
