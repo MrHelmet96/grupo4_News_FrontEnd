@@ -69,7 +69,7 @@ function HomeAdmin() {
             <div className="mt-4 mb-4">
               <div className='d-flex justify-content-between border-bottom border-dark border-2'>
                 <h2>Lo que está pasando</h2>
-                <Link className='btn btn-secondary btn-sm mb-2' to="/crearArticulo">Crear entrada nueva</Link>
+                <Link className='btn btn-secondary btn-sm mb-2' to="/crearArticulo">Crear nueva noticia</Link>
               </div>
               <div className='row'>
                 <ArticleGridAdmin />

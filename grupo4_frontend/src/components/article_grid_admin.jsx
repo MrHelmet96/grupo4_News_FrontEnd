@@ -67,26 +67,31 @@ export class ArticleGridAdmin extends Component {
     this.setState({ articles: this.state.originalArticles });
   }
 
+ 
   handleDelete(articleId) {
-    // Aquí puedes hacer una solicitud al servidor para eliminar el artículo por su ID.
-    // Puedes usar la función fetch para hacer la solicitud DELETE.
-
-    fetch(`http://localhost:8080/articles/${articleId}`, {
-      method: 'DELETE'
-    })
-      .then(response => {
-        if (response.status === 200) {
-          // Actualiza el estado para reflejar la eliminación del artículo.
-          this.setState(prevState => ({
-            articles: prevState.articles.filter(article => article.article_id !== articleId)
-          }));
-        }
+    // Mostrar una alerta de confirmación
+    let confirmacion = window.confirm("¿Estás seguro de que deseas eliminar este artículo?");
+    
+    // Si el usuario hace clic en "Aceptar" en la alerta de confirmación, procede con la eliminación
+    if (confirmacion) {
+      // Realiza la solicitud DELETE al servidor para eliminar el artículo
+      fetch(`http://localhost:8080/articles/${articleId}`, {
+        method: 'DELETE'
       })
-      .catch(error => {
-        console.error('Error al eliminar el artículo:', error);
-      });
+        .then(response => {
+          if (response.status === 200) {
+            // Actualiza el estado para reflejar la eliminación del artículo.
+            this.setState(prevState => ({
+              articles: prevState.articles.filter(article => article.article_id !== articleId)
+            }));
+          }
+        })
+        .catch(error => {
+          console.error('Error al eliminar el artículo:', error);
+        });
+    }
   }
-
+  
 
   render() {
 

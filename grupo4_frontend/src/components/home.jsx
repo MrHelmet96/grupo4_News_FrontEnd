@@ -54,7 +54,7 @@ function Home() {
             <div className="">
             <div className="d-flex justify-content-center my-4">
                 <button onClick={handleNavegacion} className="btn btn-secondary btn-sm">
-                  publicar entrada
+                  publicar noticia
                 </button>
               </div>
 
