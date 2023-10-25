@@ -82,8 +82,6 @@ export class InternalUsersEdit extends Component {
     }
   }
 
-  // handler invocado por el evento onSubmit() del formulario, aqui hay dos caminos posibles, un POST para la creacion o un PUT para la edicion
-  // eso lo diferenciamos mediante "this.props.params.vehiculo_id", acorde a su existencia debemos cambiar tanto la URL como el METHOD del fetch
   handleSubmit = (event) => {
     event.preventDefault();
 
@@ -118,6 +116,8 @@ export class InternalUsersEdit extends Component {
       })
       .then(result => {
         if (result.ok) {
+          console.log('anduvo')
+          alert('usuario editado correctamente')
           toast.success(result.body.message, {
             position: "bottom-center",
             autoClose: 5000,
@@ -128,18 +128,10 @@ export class InternalUsersEdit extends Component {
             progress: undefined,
             theme: "light",
           });
-          toast.success(`Usuario ${user.name} ahora tiene el rol: ${user.rol_name}`, {
-            position: "top-center",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "colored",
-            });
           this.props.navigate("/panel/users");
         } else {
+          console.log('no anda')
+          alert('no se ha podido editar el usuario')
           toast.error(result.body.message, {
             position: "bottom-center",
             autoClose: 5000,
