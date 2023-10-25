@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { useNavigate, useParams,Link } from "react-router-dom";
+import { useNavigate, useParams, Link, redirect } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 // import Modal from "react-bootstrap/esm/ModalBody";
@@ -100,13 +100,13 @@ export class InternalUsersEdit extends Component {
       body: JSON.stringify(user),
       headers: {
         "Content-Type": "application/json",
-      },
+      }
     };
     const url = this.props.params.user_id
       ? `http://localhost:8080/users/${this.props.params.user_id}`
-      : "http://localhost:8080/users";
+      : "http://localhost:8080/users"
     fetch(url, parametros)
-      .then((res) => {
+      .then(res => {
         return res.json().then((body) => {
           return {
             status: res.status,
@@ -116,7 +116,7 @@ export class InternalUsersEdit extends Component {
           };
         })
       })
-      .then((result) => {
+      .then(result => {
         if (result.ok) {
           toast.success(result.body.message, {
             position: "bottom-center",
@@ -128,6 +128,16 @@ export class InternalUsersEdit extends Component {
             progress: undefined,
             theme: "light",
           });
+          toast.success(`Usuario ${user.name} ahora tiene el rol: ${user.rol_name}`, {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+            });
           this.props.navigate("/panel/users");
         } else {
           toast.error(result.body.message, {
@@ -143,7 +153,7 @@ export class InternalUsersEdit extends Component {
         }
       })
       .catch((error) => {
-        console.log(error);
+        console.log(error)
       });
   };
 
@@ -267,7 +277,7 @@ export class InternalUsersEdit extends Component {
   }
 }
 
-export default UsersEdit;
+export default UsersEdit
 
 export function UsersEdit() {
   const p = useParams();
