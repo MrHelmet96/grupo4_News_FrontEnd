@@ -136,10 +136,10 @@ export class UserPanelDos extends Component {
                     <td>{user.surname}</td>
                     <td>{user.rol_id}</td>
                     <Link to={`/panel/users/edit/${user.user_id}`} className='btn btn-primary'>
-                        <span class="material-symbols-outlined">edit</span>
+                        <span className="material-symbols-outlined">edit</span>
                     </Link>
-                    <button className='btn btn-danger' onClick={() => this.handleClickDelete(user.user_id)}>
-                        <span class="material-symbols-outlined">delete</span>
+                    <button className='btn btn-danger ms-2' onClick={() => this.handleClickDelete(user.user_id)}>
+                        <span className="material-symbols-outlined">delete</span>
                     </button>
                 </tr>
             )
@@ -147,8 +147,14 @@ export class UserPanelDos extends Component {
         });
         return (
             <div className='col-10'>
+                <div className='d-flex flex-column my-5'>
+                    <Link to={'/admin'} className='btn btn-secondary'>Ir a panel de entradas</Link>
+                </div>
+                <div className='d-flex flex-column my-5'>
+                    <h4 className='align-self-center'>Panel de Usuarios</h4>
+                </div>
                 <div className='container'>
-                    <table className='table  table-striped'>
+                    <table className='table table-striped'>
                         <thead>
                             <tr>
                                 <th>ID</th>

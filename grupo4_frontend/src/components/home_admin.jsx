@@ -27,14 +27,15 @@ function HomeAdmin() {
             </div>
           </div>
 
-          <div className='d-flex flex-column justify-content-evenly'>
-          <button onClick={handleNavegacion} className="btn btn-primary">Leer todas las noticias</button>
+          <div className='d-flex justify-content-between m-1'>
+          <button onClick={handleNavegacion} className="btn btn-outline-primary btn-sm"><i class="fa-solid fa-angles-left"> Leer entradas</i></button>
+          <Link to={'/panel/users'} onClick={handleNavegacion} className="btn btn-outline-secnodary btn-sm">Ir a panel de usuarios<i class="fa-solid fa-angles-right"> </i></Link>
           </div>
           <div className="col-md-12 col-lg-12">
             <div className="mt-4 mb-4">
               <div className='d-flex justify-content-between border-bottom border-dark border-2'>
               <h2>Lo que está pasando</h2>
-              <Link to="/crearArticulo">Crear entrada nueva</Link>
+              <Link className='btn btn-secondary btn-sm mb-2' to="/crearArticulo">Crear entrada nueva</Link>
               </div>
               <div className='row'>
                 <ArticleGridAdmin />              

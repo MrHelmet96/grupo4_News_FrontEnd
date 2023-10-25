@@ -31,7 +31,7 @@ export class ArticleGrid extends Component {
       .then((result) => {
         this.setState({
           articles: result,
-          // originalArticles: result,  // Almacenando la lista original aquí
+          originalArticles: result,  // Almacenando la lista original aquí
         });
       })
       .catch((error) => {
@@ -88,8 +88,8 @@ export class ArticleGrid extends Component {
 
     var mostrarPreview = this.state.articles.map((article, index) => {
       return (
-        <div className="d-flex justify-content-between border-bottom border-dark border-2" style={{ height: '120px' }} key={index}>
-          <div className="d-flex flex-column align-self-center">
+        <div className="d-flex justify-content-between border-bottom border-dark border-2 my-2" style={{ height: '170px' }} key={index}>
+          <div className="d-flex flex-column align-self-center" style={{ width: '1200px' }}>
             <h3 className='fs-1'>{article.title}</h3>
             <p className='text-muted'>{article.subtitle}</p>
           </div>
