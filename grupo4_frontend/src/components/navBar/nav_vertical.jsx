@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
-import { Link, useNavigate  } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
-import {toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 
 
 
 
 function NavVertical() {
   const redirect = useNavigate();
-  
+
   //hooks de login
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -24,18 +24,16 @@ function NavVertical() {
   const [email, setEmail] = useState("");
   const [clave, setClave] = useState("");
   const [registrationError, setRegistrationError] = useState(false);
-  
 
 
-  //toggle de Registro
+
+  // Función para abrir/cerrar el modal de registro
   const toggle = () => setModal(!modal);
 
-  //toggle de Login
+  // Función para abrir/cerrar el modal de inicio de sesión
   const toggleLoginModal = () => setShowLoginModal(!showLoginModal);
-  
- 
-  // logica de register 
 
+  // Lógica para el registro de usuarios
   const handleRegistro = async () => {
     try {
       const response = await fetch("http://localhost:8080/users", {
@@ -53,7 +51,8 @@ function NavVertical() {
 
       if (response.ok) {
         // Registro exitoso
-        toast.success('Su usario a sido creado con éxito!', {
+        toast.success('Su usuario ha sido creado con éxito!', {
+          // Configuración de notificación con la librería react-toastify
           position: "bottom-center",
           autoClose: 5000,
           hideProgressBar: false,
@@ -62,9 +61,8 @@ function NavVertical() {
           draggable: true,
           progress: undefined,
           theme: "light",
-          });
-        toggle()
-        
+        });
+        toggle(); // Cierra el modal de registro
       } else {
         setRegistrationError(true);
       }
@@ -74,8 +72,7 @@ function NavVertical() {
     }
   };
 
-  // logica login & logout
-
+  // Lógica para el inicio de sesión y cierre de sesión
   const HandleLogin = async () => {
     try {
       const response = await fetch("http://localhost:8080/security/login", {
@@ -87,62 +84,65 @@ function NavVertical() {
       });
 
       if (response.ok) {
+        // Inicio de sesión exitoso
         setIsLoggedIn(true);
         setLoginError(false);
         toggleLoginModal();
-        
+
         const data = await response.json();
-        
-        sessionStorage.setItem("token", JSON.stringify(data.token))
-        
-        var tokenDecodificado = jwt_decode(data.token)
-        console.log(tokenDecodificado)
-          if (JSON.stringify(tokenDecodificado.rol_id)==3){  
-            localStorage.setItem("admin", true)        
-            redirect("/panel/users")
-            toast.success(`Bienvenido, Administrador!`, {
-              position: "bottom-center",
-              autoClose: 5000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-              theme: "light",
-              });           
-          } 
-          if (JSON.stringify(tokenDecodificado.rol_id)==2){          
-            toast.success(`Bienvenido, editor!`, {
-              position: "bottom-center",
-              autoClose: 5000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-              theme: "light",
-              });
-            redirect("/admin")           
-          } 
-          if (JSON.stringify(tokenDecodificado.rol_id)==1){ 
-            toast.success(`BIENVENIDO!`, {
-              position: "bottom-center",
-              autoClose: 5000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-              theme: "light",
-              });     
-            redirect("/home")           
-          } 
-          
-          
+
+        // Almacena el token en la sesión del navegador
+        sessionStorage.setItem("token", JSON.stringify(data.token));
+
+        // Decodifica el token JWT
+        var tokenDecodificado = jwt_decode(data.token);
+        console.log(tokenDecodificado);
+        if (JSON.stringify(tokenDecodificado.rol_id) == 3) {
+          localStorage.setItem("admin", true)
+          redirect("/panel/users")
+          toast.success(`Bienvenido, Administrador!`, {
+            position: "bottom-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
+        }
+        if (JSON.stringify(tokenDecodificado.rol_id) == 2) {
+          toast.success(`Bienvenido, editor!`, {
+            position: "bottom-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
+          redirect("/admin")
+        }
+        if (JSON.stringify(tokenDecodificado.rol_id) == 1) {
+          toast.success(`BIENVENIDO!`, {
+            position: "bottom-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
+          redirect("/home")
+        }
+
+
 
       } else {
         setLoginError(true);
-       
+
       }
     } catch (error) {
       console.error(error);
@@ -150,9 +150,9 @@ function NavVertical() {
       sessionStorage.setItem("token", false)
     }
   };
-
+// Función para cerrar la sesión del usuario
   const handleLogout = () => {
-    setIsLoggedIn(false);    
+    setIsLoggedIn(false);
     sessionStorage.setItem("token", false)
     toggleLoginModal();
     toast.info('Nos vemos pronto!', {
@@ -164,16 +164,16 @@ function NavVertical() {
       draggable: true,
       progress: undefined,
       theme: "colored",
-      });
+    });
     redirect("/")
-    
+
   };
 
   return (
-    <nav className="navbar nav col-lg-2 col-md-2 bg-light text-dark sticky-top justify-content-center" style={{height: '100vh'}}>
+    <nav className="navbar nav col-lg-2 col-md-2 bg-light text-dark sticky-top justify-content-center" style={{ height: '100vh' }}>
       <div className="logo text-center mt-2 py-4 align-self-start border-bottom border-2 border-dark">
         <Link className="nav-link text-dark" to="/Home">
-          <h1>NEWS  
+          <h1>NEWS
             Silicon Misiones</h1>
         </Link>
       </div>
@@ -201,18 +201,18 @@ function NavVertical() {
         <div className="modal-dialog" role="document">
           <div className="modal-content">
             <div className="modal-header">
-              <h5 className="modal-title" style={{color:'black'}}>Iniciar Sesión</h5>
+              <h5 className="modal-title" style={{ color: 'black' }}>Iniciar Sesión</h5>
               <button type="button" className="close" onClick={toggleLoginModal}>
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
-            <div className="modal-body" style={{color:'black'}}>
+            <div className="modal-body" style={{ color: 'black' }}>
               {isLoggedIn ? (
                 <p>¿Desea cerrar sesión?</p>
               ) : (
                 <form>
                   <div className="form-group">
-                    <label htmlFor="mail" style={{color:'black'}}>Correo electrónico</label>
+                    <label htmlFor="mail" style={{ color: 'black' }}>Correo electrónico</label>
                     <input
                       type="mail"
                       className="form-control"
@@ -222,7 +222,7 @@ function NavVertical() {
                     />
                   </div>
                   <div className="form-group">
-                    <label htmlFor="password"style={{color:'black'}}>Contraseña</label>
+                    <label htmlFor="password" style={{ color: 'black' }}>Contraseña</label>
                     <input
                       type="password"
                       className="form-control"
@@ -232,7 +232,7 @@ function NavVertical() {
                     />
                   </div>
                   {loginError && (
-                    <div className="alert alert-danger">Credenciales inválidas, intente nuevamente</div>                    
+                    <div className="alert alert-danger">Credenciales inválidas, intente nuevamente</div>
                   )}
                 </form>
               )}
@@ -260,17 +260,17 @@ function NavVertical() {
         <div className="modal-dialog" role="document">
           <div className="modal-content">
             <div className="modal-header">
-              <h5 className="modal-title" style={{color:'black'}}>Registro de Usuarios</h5>
+              <h5 className="modal-title" style={{ color: 'black' }}>Registro de Usuarios</h5>
               <button type="button" className="close" onClick={toggle}>
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
             <div className="modal-body">
-              <form>                
+              <form>
                 <div className="modal-body">
                   <form>
                     <div className="form-group">
-                      <label htmlFor="name" style={{color:'black'}}>Nombre</label>
+                      <label htmlFor="name" style={{ color: 'black' }}>Nombre</label>
                       <input
                         type="text"
                         className="form-control"
@@ -280,7 +280,7 @@ function NavVertical() {
                       />
                     </div>
                     <div className="form-group">
-                      <label htmlFor="surname" style={{color:'black'}}>Apellido</label>
+                      <label htmlFor="surname" style={{ color: 'black' }}>Apellido</label>
                       <input
                         type="text"
                         className="form-control"
@@ -290,7 +290,7 @@ function NavVertical() {
                       />
                     </div>
                     <div className="form-group">
-                      <label htmlFor="email" style={{color:'black'}}>Correo electrónico</label>
+                      <label htmlFor="email" style={{ color: 'black' }}>Correo electrónico</label>
                       <input
                         type="email"
                         className="form-control"
@@ -300,7 +300,7 @@ function NavVertical() {
                       />
                     </div>
                     <div className="form-group">
-                      <label htmlFor="password" style={{color:'black'}}>Contraseña</label>
+                      <label htmlFor="password" style={{ color: 'black' }}>Contraseña</label>
                       <input
                         type="password"
                         className="form-control"
@@ -337,73 +337,10 @@ function NavVertical() {
           </div>
         </div>
       </div>
-      {/* Fin del Modal register */}      
+      {/* Fin del Modal register */}
     </nav>
-    
+
   );
-
-
-
 }
 
 export default NavVertical;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// import React from "react"
-// import { Link } from "react-router-dom"
-
-// function NavVertical() {
-//     return (
-//         <nav className="navbar nav col-lg-2 col-md-2 bg-dark text-white">
-//             <div className="logo text-center mt-4"><Link className="nav-link" to="/"><h1>Grupo 4 Blog</h1></Link></div>
-//             <div className="categorias mt-4 mb-4">
-//                 {/* <Link className=" border-top border-bottom border-1 border-light m-1 nav-link" to="/category/sports">Sports</Link>
-//                 <Link className=" border-top border-bottom border-1 border-light m-1 nav-link" to="/category/health">Health</Link>
-//                 <Link className=" border-top border-bottom border-1 border-light m-1 nav-link" to="/category/gastronomy">Gastronomy</Link>
-//                 <Link className=" border-top border-bottom border-1 border-light m-1 nav-link" to="/category/">Enterteinment</Link>
-//                 <Link className=" border-top border-bottom border-1 border-light m-1 nav-link" to="">Economy & Politics</Link>
-//                 <Link className=" border-top border-bottom border-1 border-light m-1 nav-link" to="">Others</Link> */}
-//             </div>
-//             <div className="d-flex flex-column justify-content-center">
-//                 <Link className="btn btn-outline-primary mb-2" to="/login">Iniciar Sesión</Link>
-//                 <Link className="btn btn-primary mb-2" to="/register">Registrarse</Link>
-                
-//             </div>
-
-//         </nav>
-//     )
-// }
-
-// export default NavVertical

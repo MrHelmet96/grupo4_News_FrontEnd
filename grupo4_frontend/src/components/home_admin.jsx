@@ -1,19 +1,19 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
-// import Footer from './footer/footer';
 import { Link, useNavigate } from 'react-router-dom';
-import ArticleGridAdmin from './article_grid_admin';
-import jwt_decode from 'jwt-decode';
-import { toast } from 'react-toastify';
+import ArticleGridAdmin from './article_grid_admin'; // Importa el componente para mostrar noticias en el panel de administración
+import jwt_decode from 'jwt-decode'; // Importa la biblioteca para decodificar tokens JWT
+import { toast } from 'react-toastify'; // Importa la biblioteca para mostrar notificaciones
 
 function HomeAdmin() {
 
+  // Función para manejar la navegación
   const navigate = useNavigate();
   const handleNavegacion = () => {
     var userRole = sessionStorage.getItem("token")
 
     var tokenDecodificado = jwt_decode(userRole)
-
+    // Mensajes y rutas personalizadas
     if (JSON.stringify(tokenDecodificado.rol_id) == 1) {
       toast.error('Su rol no le permite acceder a esto', {
         position: "top-center",
@@ -74,9 +74,6 @@ function HomeAdmin() {
           </div>
         </div>
       </div>
-
-
-      {/* <Footer/> */}
     </div>
 
   );

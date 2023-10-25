@@ -12,10 +12,6 @@ export class UserPanelDos extends Component {
         this.handleClickDelete = this.handleClickDelete.bind(this);
     }
 
-    
-    // funcion ejecutada al montar el componente, tras ejecutarse el render, 
-    // este metodo realiza un fetch al endpoint listar()
-    // para traer el listado de vehiculos y setearlos en en estado "vehiculos"
     componentDidMount() {
 
         let parametros = {
@@ -25,8 +21,6 @@ export class UserPanelDos extends Component {
                 'authorization': sessionStorage.getItem('token')
             }
         }
-
-
 
         fetch("http://localhost:8080/users", parametros)
             .then(res => {
@@ -63,75 +57,73 @@ export class UserPanelDos extends Component {
             ).catch(
                 (error) => { console.log(error) }
             );
-
-
     }
 
     // // handler invocado mediante el evento onCLick() del boton eliminar
-    
+
     handleClickDelete(user_id) {
         // Mostrar una alerta de confirmación
         let confirmacion = window.confirm("¿Estás seguro de que deseas eliminar este usuario?");
-        
+
         // Si el usuario hace clic en "Aceptar" en la alerta de confirmación, procede con la eliminación
         if (confirmacion) {
-          let parametros = {
-            method: 'DELETE',
-            headers: {
-              'Content-Type': 'application/json',
-            }
-          }
-          
-          fetch(`http://localhost:8080/users/${user_id}`, parametros)
-            .then(res => {
-              if (res.status === 200) {
-                // Actualiza el estado para reflejar la eliminación del usuario.
-                this.setState(prevState => ({
-                  users: prevState.users.filter(user => user.user_id !== user_id)
-                }));
-              }
-              return res.json()
-                .then(body => {
-                  return {
-                    status: res.status,
-                    ok: res.ok,
-                    headers: res.headers,
-                    body: body
-                  };
-                });
-            }).then(
-              result => {
-                if (result.ok) {
-                  toast.success(result.body.message, {
-                    position: "bottom-center",
-                    autoClose: 5000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: "light",
-                  });
-                  this.componentDidMount();
-                } else {
-                  toast.error(result.body.message, {
-                    position: "bottom-center",
-                    autoClose: 5000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: "light",
-                  });
+            let parametros = {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
                 }
-              }
-            ).catch(
-              (error) => { console.log(error) }
-            );
+            }
+
+            fetch(`http://localhost:8080/users/${user_id}`, parametros)
+                .then(res => {
+                    if (res.status === 200) {
+                        // Actualiza el estado para reflejar la eliminación del usuario.
+                        this.setState(prevState => ({
+                            users: prevState.users.filter(user => user.user_id !== user_id)
+                        }));
+                    }
+                    return res.json()
+                        .then(body => {
+                            return {
+                                status: res.status,
+                                ok: res.ok,
+                                headers: res.headers,
+                                body: body
+                            };
+                        });
+                }).then(
+                    result => {
+                        if (result.ok) {
+                            toast.success(result.body.message, {
+                                position: "bottom-center",
+                                autoClose: 5000,
+                                hideProgressBar: false,
+                                closeOnClick: true,
+                                pauseOnHover: true,
+                                draggable: true,
+                                progress: undefined,
+                                theme: "light",
+                            });
+                            this.componentDidMount();
+                        } else {
+                            toast.error(result.body.message, {
+                                position: "bottom-center",
+                                autoClose: 5000,
+                                hideProgressBar: false,
+                                closeOnClick: true,
+                                pauseOnHover: true,
+                                draggable: true,
+                                progress: undefined,
+                                theme: "light",
+                            });
+                        }
+                    }
+                ).catch(
+                    (error) => { console.log(error) }
+                );
         }
-      }
-      
+    }
+
 
     render() {
         const filas = this.state.users.map((user, index) => {

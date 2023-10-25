@@ -22,7 +22,7 @@ export class InternalCreateArticle extends Component {
     }
 
     componentDidMount() {
-
+        // Realiza una solicitud para obtener las categorías disponibles desde el servidor
         fetch('http://localhost:8080/categories')
             .then((res) => res.json())
             .then((result) => {
@@ -82,11 +82,11 @@ export class InternalCreateArticle extends Component {
                 );
         }
  }
-
+    // Maneja la presentación del formulario y envío de datos
     handleSubmit = (event) => {
         event.preventDefault()
 
-        let article = {
+        let article = { // Crea un objeto con los datos del artículo
             article_id: this.state.article_id,
             title: this.state.title,
             subtitle: this.state.subtitle,
@@ -94,7 +94,7 @@ export class InternalCreateArticle extends Component {
             category_id: this.state.category_id,
         }
 
-        let parametros = {
+        let parametros = { // Configura los parámetros de la solicitud HTTP
             method: this.props.params.article_id ? 'PUT' : 'POST',
             body: JSON.stringify(article),
             headers: {
@@ -102,7 +102,7 @@ export class InternalCreateArticle extends Component {
             }
         }
         const url = this.props.params.article_id ? `http://localhost:8080/articles/${this.props.params.article_id}` : "http://localhost:8080/articles"
-
+        // Realiza la solicitud HTTP para crear o editar el artículo
         fetch(url, parametros)
             .then(res => {
                 return res.json().then(body => {
@@ -144,11 +144,11 @@ export class InternalCreateArticle extends Component {
                 (error) => { console.log(error) }
             );
     };
-
+    // Maneja los cambios en los campos del formulario
     handleChange = (event) => {
         this.setState({ [event.target.name]: event.target.value });
 };
-
+    // Maneja el cambio de categoría
     handleCategoryChange = (event) => {
         this.setState({ category_id: event.target.value });
 };

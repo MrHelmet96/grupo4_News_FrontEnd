@@ -1,21 +1,19 @@
 import React from "react";
 import { useNavigate } from 'react-router-dom';
 import "bootstrap/dist/css/bootstrap.css";
-import ArticleGrid from "./article_grid";
-import jwt_decode from 'jwt-decode';
-import {toast } from 'react-toastify';
-
-// import Footer from './footer/footer';
+import ArticleGrid from "./article_grid"; // Importa el componente para mostrar noticias
+import jwt_decode from 'jwt-decode';  // Importa la biblioteca para decodificar tokens JW
+import {toast } from 'react-toastify'; // Importa la biblioteca para mostrar notificaciones
 
 function Home() {
-  // Lógica para cargar y mostrar noticias principales
-
+// Obtiene la función de navegación para redirigir a otras rutas
   const navigate = useNavigate();
   const handleNavegacion = () => {
+    // Obtiene el token del usuario del almacenamiento de sesión
     var userRole = sessionStorage.getItem("token")
-    
+      // Decodifica el token JWT para obtener la información del usuario
        var tokenDecodificado = jwt_decode(userRole)
-
+      // Mensajes persoanlizados según rol
        if (JSON.stringify(tokenDecodificado.rol_id)==1){    
         toast.error('Su rol no le permite acceder a esto', {
           position: "top-center",

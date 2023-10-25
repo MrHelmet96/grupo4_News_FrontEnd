@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import NavVertical from './components/navBar/nav_vertical';
 import Home from '../src/components/home';
 import HomeAdmin from './components/home_admin';
-// import Category from '../src/components/category'; // Componente para mostrar noticias de una categoría específica
 import Article from './components/article';
 import CreateArticle from './components/article_manipulation/article_create';
 import { ToastContainer } from 'react-toastify';
