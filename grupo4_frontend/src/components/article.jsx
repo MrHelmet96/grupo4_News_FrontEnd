@@ -1,10 +1,28 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom'; // Importa el hook useParams de react-router-dom
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import jwt_decode from 'jwt-decode';
 
 function Article() {
   const { id } = useParams(); // Obtiene el parámetro "id" de la URL
   const [article, setArticle] = useState(null);
+
+  const navigate = useNavigate();
+  const handleNavegacion = () => {
+    var userRole = sessionStorage.getItem("token")
+
+    var tokenDecodificado = jwt_decode(userRole)
+
+    if (JSON.stringify(tokenDecodificado.rol_id) == 1) {
+      navigate('/home');
+    }
+    if (JSON.stringify(tokenDecodificado.rol_id) == 2) {
+      navigate('/admin');
+    }
+    if (JSON.stringify(tokenDecodificado.rol_id) == 3) {
+      navigate('/admin');
+    }
+  };
 
   // Utiliza el hook useEffect para realizar una solicitud cuando el "id" cambia
   useEffect(() => {
@@ -29,9 +47,9 @@ function Article() {
       <div className='col-md-12 col-lg-12 border-bottom border-dark border-2'>
             <div className=" mt-5">
               
-            <Link to="/admin">
-              <a href='/admin' className=""><i class="fa-solid fa-angles-left"></i></a>
-            </Link>
+            <button type='button' onClick={handleNavegacion}>
+              <a className=""><i class="fa-solid fa-angles-left"></i></a>
+            </button>
             
             </div>
           </div>

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { useNavigate, useParams, Link, redirect } from "react-router-dom";
+import { useNavigate, useParams, Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 // import Modal from "react-bootstrap/esm/ModalBody";
