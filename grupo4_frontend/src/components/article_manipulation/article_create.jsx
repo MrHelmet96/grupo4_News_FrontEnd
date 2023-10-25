@@ -159,13 +159,8 @@ export class InternalCreateArticle extends Component {
 
             <div className='col-10'>
                 <div className='row'>
-<<<<<<< HEAD
                     <div className=" my-5 border-bottom       border-dark border-2 ps-5 pb-3">
                         <Link to="/admin">
-=======
-                    <div className=" my-5 border-bottom border-dark border-2 ps-5 pb-3">
-                        <Link to="/">
->>>>>>> 743c3f7fee2f9545245622df064905923f6bc07a
                             <i class="fa-solid fa-angles-left"></i>
                         </Link>
                     </div>

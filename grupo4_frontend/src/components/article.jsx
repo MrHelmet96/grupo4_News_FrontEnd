@@ -29,13 +29,8 @@ function Article() {
       <div className='col-md-12 col-lg-12 border-bottom border-dark border-2'>
             <div className=" mt-5">
               
-<<<<<<< HEAD
             <Link to="/admin">
               <a href='/admin' className=""><i class="fa-solid fa-angles-left"></i></a>
-=======
-            <Link to="/home">
-              <a href='/' className=""><i class="fa-solid fa-angles-left"></i></a>
->>>>>>> 743c3f7fee2f9545245622df064905923f6bc07a
             </Link>
             
             </div>
