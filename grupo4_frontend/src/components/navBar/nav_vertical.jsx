@@ -94,29 +94,47 @@ function NavVertical() {
         const data = await response.json();
         
         sessionStorage.setItem("token", JSON.stringify(data.token))
-        toast.success('BIENVENIDO!', {
-          position: "bottom-center",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-          });
+        
         var tokenDecodificado = jwt_decode(data.token)
         console.log(tokenDecodificado)
           if (JSON.stringify(tokenDecodificado.rol_id)==3){  
             localStorage.setItem("admin", true)        
-            
-            redirect("/panel/users")           
+            redirect("/panel/users")
+            toast.success(`Bienvenido, Administrador!`, {
+              position: "bottom-center",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+              });           
           } 
           if (JSON.stringify(tokenDecodificado.rol_id)==2){          
-            
+            toast.success(`Bienvenido, editor!`, {
+              position: "bottom-center",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+              });
             redirect("/admin")           
           } 
-          if (JSON.stringify(tokenDecodificado.rol_id)==1){          
-            
+          if (JSON.stringify(tokenDecodificado.rol_id)==1){ 
+            toast.success(`BIENVENIDO!`, {
+              position: "bottom-center",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+              });     
             redirect("/home")           
           } 
           

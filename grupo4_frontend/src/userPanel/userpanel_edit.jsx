@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { useNavigate, useParams,Link } from "react-router-dom";
+import { useNavigate, useParams, Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 // import Modal from "react-bootstrap/esm/ModalBody";
@@ -82,8 +82,6 @@ export class InternalUsersEdit extends Component {
     }
   }
 
-  // handler invocado por el evento onSubmit() del formulario, aqui hay dos caminos posibles, un POST para la creacion o un PUT para la edicion
-  // eso lo diferenciamos mediante "this.props.params.vehiculo_id", acorde a su existencia debemos cambiar tanto la URL como el METHOD del fetch
   handleSubmit = (event) => {
     event.preventDefault();
 
@@ -100,13 +98,13 @@ export class InternalUsersEdit extends Component {
       body: JSON.stringify(user),
       headers: {
         "Content-Type": "application/json",
-      },
+      }
     };
     const url = this.props.params.user_id
       ? `http://localhost:8080/users/${this.props.params.user_id}`
-      : "http://localhost:8080/users";
+      : "http://localhost:8080/users"
     fetch(url, parametros)
-      .then((res) => {
+      .then(res => {
         return res.json().then((body) => {
           return {
             status: res.status,
@@ -116,8 +114,10 @@ export class InternalUsersEdit extends Component {
           };
         })
       })
-      .then((result) => {
+      .then(result => {
         if (result.ok) {
+          console.log('anduvo')
+          alert('usuario editado correctamente')
           toast.success(result.body.message, {
             position: "bottom-center",
             autoClose: 5000,
@@ -130,6 +130,8 @@ export class InternalUsersEdit extends Component {
           });
           this.props.navigate("/panel/users");
         } else {
+          console.log('no anda')
+          alert('no se ha podido editar el usuario')
           toast.error(result.body.message, {
             position: "bottom-center",
             autoClose: 5000,
@@ -143,8 +145,7 @@ export class InternalUsersEdit extends Component {
         }
       })
       .catch((error) => {
-        console.log(error);
-        window.location.reload();
+        console.log(error)
       });
   };
 
@@ -268,7 +269,7 @@ export class InternalUsersEdit extends Component {
   }
 }
 
-export default UsersEdit;
+export default UsersEdit
 
 export function UsersEdit() {
   const p = useParams();

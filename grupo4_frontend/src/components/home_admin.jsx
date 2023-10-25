@@ -8,9 +8,6 @@ import { toast } from 'react-toastify';
 
 function HomeAdmin() {
 
-
-  // Lógica para cargar y mostrar noticias principales
-
   const navigate = useNavigate();
   const handleNavegacion = () => {
     var userRole = sessionStorage.getItem("token")
@@ -47,7 +44,6 @@ function HomeAdmin() {
       navigate('/panel/users');
     }
   };
-
 
   return (
     <div className='col-md-10 col-lg-10'>
