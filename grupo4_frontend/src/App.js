@@ -10,6 +10,7 @@ import { ToastContainer } from 'react-toastify';
 import  {PublicHome } from './components/PublicHome';
 import UsersEdit from './userPanel/userpanel_edit';
 import UserPanelDos from './userPanel/userPanel2';
+import Sidenavbar from './components/navBar/sidebar';
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
         <NavVertical/>
         <Routes>
           <Route path="/" element={<PublicHome />} />            
+          <Route path="/sidebar" element={<Sidenavbar />} />            s
           <Route path="/home" element={<Home />} />     
           <Route path="/admin" element={<HomeAdmin />} />            
           <Route path="/panel/users/edit/:user_id" element={<UsersEdit />} />           

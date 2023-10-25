@@ -31,7 +31,7 @@ export class ArticleGrid extends Component {
       .then((result) => {
         this.setState({
           articles: result,
-          originalArticles: result,  // Almacenando la lista original aquí
+          // originalArticles: result,  // Almacenando la lista original aquí
         });
       })
       .catch((error) => {
@@ -56,12 +56,6 @@ export class ArticleGrid extends Component {
   // Función para filtrar noticias por categoría
   filtrarPorCategoria(categoria) {
 
-    // console.log('Filtrar por categoría:', categoria);
-    // console.log('originalArticles:', this.state.originalArticles);
-    // console.log('Articles:', this.state.articles);
-    // console.log('id categoria:', this.state.category_id);
-    // console.log('name categoria:', this.state.category_name);
-    // Filtrar las noticias por categoría de la lista original
     const entradasFiltradas = this.state.originalArticles.filter((article) => article.category_id == categoria);
 
     this.setState({ articles: entradasFiltradas });
@@ -75,12 +69,7 @@ export class ArticleGrid extends Component {
 
   render() {
 
-    
-
       var categorias = this.state.categories;
-
-
-    
 
     const mostrarBotones = categorias.map((categoria, index) => (
       <button className='btn btn-dark ' key={index} onClick={() => this.filtrarPorCategoria(categoria.category_id)}>
