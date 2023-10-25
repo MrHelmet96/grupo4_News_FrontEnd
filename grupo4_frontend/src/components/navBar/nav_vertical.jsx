@@ -126,9 +126,8 @@ function NavVertical() {
   return (
     <nav className="navbar nav col-lg-2 col-md-2 bg-light text-dark sticky-top justify-content-center" style={{height: '100vh'}}>
       <div className="logo text-center mt-2 py-4 align-self-start border-bottom border-2 border-dark">
-        <Link className="nav-link text-dark" to="/">
-          <h1>Gestión Interna 
-                    en   
+        <Link className="nav-link text-dark" to="/Home">
+          <h1>NEWS  
             Silicon Misiones</h1>
         </Link>
       </div>
