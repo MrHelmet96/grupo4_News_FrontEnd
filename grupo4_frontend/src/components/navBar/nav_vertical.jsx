@@ -138,9 +138,11 @@ function NavVertical() {
         <button className="btn btn-outline-primary mb-2" onClick={toggleLoginModal}>
           {isLoggedIn ? "Cerrar Sesión" : "Iniciar Sesión"}
         </button>
-        <button className="btn btn-primary mb-2" onClick={toggle}>
-          Registrarse
+        {!isLoggedIn && (
+          <button className="btn btn-primary mb-2" onClick={toggle}>
+            Registrarse
           </button>
+        )}
       </div>
 
       {/* Modal de Inicio de Sesión */}
@@ -278,13 +280,13 @@ function NavVertical() {
               >
                 Cancelar
               </button>
-              {!isLoggedIn && (<button
+              <button
                 type="button"
                 className="btn btn-primary"
                 onClick={handleRegistro}
               >
                 Registrarse
-              </button>)}
+              </button>
             </div>
           </div>
         </div>

@@ -114,7 +114,7 @@ export class InternalUsersEdit extends Component {
             headers: res.headers,
             body: body,
           };
-        });
+        })
       })
       .then((result) => {
         if (result.ok) {
@@ -158,18 +158,19 @@ export class InternalUsersEdit extends Component {
     return (
       <div className="col-10">
         <div className="row">
-          <div className="col">
+        <Link to="/panel/users" className="my-4">
+            <a href="/panel/users" >
+              <i class="fa-solid fa-angles-left"></i>
+            </a>
+          </Link>
+          <div className="col my-3">
             <h1>
               {this.props.params.user_id
                 ? `Edicion del Usuario ${this.props.params.user_id}`
                 : "Alta de Usuario"}
             </h1>
           </div>
-          <Link to="/panel/users">
-            <a href="/panel/users" className="">
-              <i class="fa-solid fa-angles-left"></i>
-            </a>
-          </Link>
+          
         </div>
 
         <div className="row">

@@ -105,8 +105,7 @@ export class InternalCreateArticle extends Component {
 
         fetch(url, parametros)
             .then(res => {
-                return res.json()
-                    .then(body => {
+                return res.json().then(body => {
                         return {
                             status: res.status,
                             ok: res.ok,
@@ -144,7 +143,7 @@ export class InternalCreateArticle extends Component {
             ).catch(
                 (error) => { console.log(error) }
             );
-    }
+    };
 
     handleChange = (event) => {
         this.setState({ [event.target.name]: event.target.value });

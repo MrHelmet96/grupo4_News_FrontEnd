@@ -2,6 +2,8 @@ import React from "react";
 import { useNavigate } from 'react-router-dom';
 import "bootstrap/dist/css/bootstrap.css";
 import ArticleGrid from "./article_grid";
+import jwt_decode from 'jwt-decode';
+
 // import Footer from './footer/footer';
 
 function Home() {
@@ -9,7 +11,18 @@ function Home() {
 
   const navigate = useNavigate();
   const handleNavegacion = () => {
-    navigate('/admin');
+    var userRole = sessionStorage.getItem("token")
+    
+       var tokenDecodificado = jwt_decode(userRole)
+
+       if (JSON.stringify(tokenDecodificado.rol_id)==1){    
+        alert("Su rol no le permite realizar dicha acción")}
+    
+        if (JSON.stringify(tokenDecodificado.rol_id)==2){  
+          navigate('/admin');      
+                            } 
+        if (JSON.stringify(tokenDecodificado.rol_id)==3){    
+          navigate('/admin');}
   };
   
 
