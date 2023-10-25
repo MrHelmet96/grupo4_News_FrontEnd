@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate  } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
+import {toast } from 'react-toastify';
 
 
 
@@ -52,7 +53,16 @@ function NavVertical() {
 
       if (response.ok) {
         // Registro exitoso
-        alert('Su usuario fue creado con éxito')
+        toast.success('Su usario a sido creado con éxito!', {
+          position: "bottom-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          });
         toggle()
         
       } else {
@@ -84,7 +94,16 @@ function NavVertical() {
         const data = await response.json();
         
         sessionStorage.setItem("token", JSON.stringify(data.token))
-        alert("¡bienvenido!")
+        toast.success('BIENVENIDO!', {
+          position: "bottom-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          });
         var tokenDecodificado = jwt_decode(data.token)
         console.log(tokenDecodificado)
           if (JSON.stringify(tokenDecodificado.rol_id)==3){  
@@ -118,7 +137,16 @@ function NavVertical() {
     setIsLoggedIn(false);    
     sessionStorage.setItem("token", false)
     toggleLoginModal();
-    alert("nos vemos pronto")
+    toast.info('Nos vemos pronto!', {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+      });
     redirect("/")
     
   };

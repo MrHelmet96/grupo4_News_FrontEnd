@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import { useNavigate, useParams,Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Modal from "react-bootstrap/esm/ModalBody";
-import Button from "react-bootstrap/esm/Button";
+// import Modal from "react-bootstrap/esm/ModalBody";
+// import Button from "react-bootstrap/esm/Button";
 
 export class InternalUsersEdit extends Component {
   constructor(props) {
