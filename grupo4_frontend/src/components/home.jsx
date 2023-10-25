@@ -13,7 +13,7 @@ function Home() {
           <div className='col-md-12 col-lg-12 border-bottom border-dark border-2'>
             <div className="d-flex justify-content-evenly mt-5">
               
-                <p className='col-md-4 col-lg-4'>This is a space for developing ideas that pique my interest. My intention is to build a practice of writing, share what I'm learning in the hopes that it will benefit others and my future self.</p>
+                <p className='col-md-4 col-lg-4'>This is a space for developing ideas that pique my interest. My intention is to build a practice of writing, share what I'm learning in the hopes that it will benefit others and my future.</p>
                 <p className='col-md-4 col-lg-4'>If you'd like to discuss any of these notes with me or if you're generous enough to correct my thinking, please reach out on Twitter or send me an email.</p>
             </div>
           </div>

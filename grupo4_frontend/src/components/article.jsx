@@ -29,7 +29,7 @@ function Article() {
       <div className='col-md-12 col-lg-12 border-bottom border-dark border-2'>
             <div className=" mt-5">
               
-            <Link to="/">
+            <Link to="/home">
               <a href='/' className=""><i class="fa-solid fa-angles-left"></i></a>
             </Link>
             </div>
