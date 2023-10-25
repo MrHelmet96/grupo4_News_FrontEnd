@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import "bootstrap/dist/css/bootstrap.css";
 import ArticleGrid from "./article_grid";
 import jwt_decode from 'jwt-decode';
+import {toast } from 'react-toastify';
 
 // import Footer from './footer/footer';
 
@@ -16,7 +17,16 @@ function Home() {
        var tokenDecodificado = jwt_decode(userRole)
 
        if (JSON.stringify(tokenDecodificado.rol_id)==1){    
-        alert("Su rol no le permite realizar dicha acción")}
+        toast.error('Su rol no le permite acceder a esto', {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+          });}
     
         if (JSON.stringify(tokenDecodificado.rol_id)==2){  
           navigate('/admin');      
