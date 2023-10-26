@@ -1,26 +1,23 @@
-// import { Component } from 'react';
-// import { Sidebar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar';
+import { Component } from 'react';
+ import { Sidebar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar';
+export class Sidenavbar extends Component {
 
-// export class Sidenavbar extends Component {
+    render() {
+        return (
+            <Sidebar>
+                <Menu>
+                    <SubMenu label="Charts">
+                        <MenuItem> Pie charts </MenuItem>
+                        <MenuItem> Line charts </MenuItem>                   </SubMenu>                   <MenuItem> Documentation </MenuItem>
+                    <MenuItem> Calendar </MenuItem>                
+                    </Menu>
+            </Sidebar>
+        )
+    }
 
-//     render() {
-//         return (
-//             <Sidebar>
-//                 <Menu>
-//                     <SubMenu label="Charts">
-//                         <MenuItem> Pie charts </MenuItem>
-//                         <MenuItem> Line charts </MenuItem>
-//                     </SubMenu>
-//                     <MenuItem> Documentation </MenuItem>
-//                     <MenuItem> Calendar </MenuItem>
-//                 </Menu>
-//             </Sidebar>
-//         )
-//     }
+}
 
-// }
-
-// export default Sidenavbar;
+export default Sidenavbar;
 
 
 
